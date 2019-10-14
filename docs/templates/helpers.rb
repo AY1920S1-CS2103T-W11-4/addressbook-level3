@@ -161,7 +161,7 @@ module Slim::Helpers
     path_resolver = (@path_resolver ||= PathResolver.new)
     base_dir = path_resolver.posixify(@document.base_dir)
     site_root = path_resolver.posixify(@document.attr('site-root', base_dir))
-    unless path_resolver.is_root? site_root
+    unless path_resolver.root? site_root
       raise ::ArgumentError, %(site-root must be an absolute path: #{site_root})
     end
     base_dir_to_root = nil
