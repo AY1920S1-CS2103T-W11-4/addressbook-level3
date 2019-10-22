@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>[Proposed] Report feature</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="sect2">
+<h3 id="proposed-report-feature"><a class="link" href="#proposed-report-feature">[Proposed] Report feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.
+It returns <code>CommandResult</code> object that has the boolean "isReport" set to True.
+The <code>MainApp</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainApp#handleReport()</code> method.
+The <code>ReportWindow</code> object takes in a <code>Statistics</code> object that is created by calling <code>Logic#getStatistics()</code> which subsequently calls <code>Model#getStatistics()</code>.
+Additionally, the following operation is also implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#getStatistics()</code>&#8201;&#8212;&#8201;gets the statistics of the current object.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the Report feature behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user starts up CaloFit for the first time. The <code>ModelManager</code> will contain a <code>MealLog</code> that has an empty list</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user enters "report" in the Command Line Input with a <code>MealLog</code> that has no <code>Meal</code> entered this month, a <code>CommandException</code> will be thrown since there are no <code>Meal</code> to gather statistics pertaining to this month.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user has added a <code>Meal</code> into the <code>MealLog</code> through the <code>add</code> feature.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user enters "report" in the Command Line Input to generate the report of CaloFit. The <code>ReportCommand</code> created will return a <code>CommandResult</code> object with "isReport" set to True. When the <code>MainWindow</code> checks this boolean, it calls <code>MainWindow#handleReport()</code> that creates the <code>ReportWindow</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the "report" command works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ReportCommand.png" alt="ReportCommand">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>ReportWindow</code> is generated.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ReportWindow.png" alt="ReportWindow">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-when-the-code-statistics-code-object-is-saved"><a class="link" href="#aspect-when-the-code-statistics-code-object-is-saved">Aspect: When the <code>Statistics</code> object is saved.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Only when a "report" command is entered.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less processes carried out for each type of command.</p>
+</li>
+<li>
+<p>Cons: At any point in using CaloFit, the statistics are likely not updated to the most recent command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Every command saves a new updated <code>Statistics</code> object.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Logging of statistics can be accurate, and statistics are always updated.</p>
+</li>
+<li>
+<p>Cons: Unnecessary as user does not need to see the statistics other than through a "report" command and results in every command having to do more work and interact with the <code>Model</code> more, possibly creating more bugs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> Since the user only needs to see the updated statistics when a "report" command is executed, we only need to generate a new <code>Statistics</code> object with the updated values for that command, hence <strong>Alternative 1</strong> is chosen to avoid adding unnecessary complexity to each command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-store-the-statistics-in-calofit"><a class="link" href="#aspect-data-structure-to-store-the-statistics-in-calofit">Aspect: Data structure to store the statistics in CaloFit.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Wrap the values in a <code>Statistics</code> object.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater code and easier to understand, since all statistic-related values are stored in the <code>Statistics</code> object and are not implemented in the <code>Model</code>.</p>
+</li>
+<li>
+<p>Cons: Additional class to maintain and test for dependencies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Store the values as a list in the <code>Model</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The statistics can be updated easily through the <code>Model</code> itself by updating the elements in the list. Accessing the statistics to display is easier as well.</p>
+</li>
+<li>
+<p>Cons: Burdens the <code>Model</code> with a responsibility that is largely irrelevant to its current ones, which is to keep track of the Objects that make up the CaloFit model.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> To try and enforce Single Responsibility Principle as much as possible and avoid adding irrelavant functionality to <code>Model</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 11:26:47 UTC</div></div></div></body></html>
