@@ -22,7 +22,37 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#proposed-suggest-feature">3.1. [Proposed] Suggest feature</a></li>
+<li><a href="#add-feature">3.1. Add feature</a></li>
+<li><a href="#budget-bar-display">3.2. Budget Bar display</a></li>
+<li><a href="#suggest-feature">3.3. Suggest feature</a></li>
+<li><a href="#report-feature">3.4. Report feature</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+</ul>
+</li>
+<li><a href="#documentation">4. Documentation</a></li>
+<li><a href="#testing">5. Testing</a></li>
+<li><a href="#dev-ops">6. Dev Ops</a></li>
+<li><a href="#product-scope">Appendix A: Product Scope</a>
+<ul class="sectlevel2">
+<li><a href="#target-user-profile">A.1. Target User Profile</a></li>
+<li><a href="#value-proposition">A.2. Value Proposition</a></li>
+</ul>
+</li>
+<li><a href="#user-stories">Appendix B: User Stories</a></li>
+<li><a href="#use-cases">Appendix C: Use Cases</a>
+<ul class="sectlevel2">
+<li><a href="#use-case-add-meal-entry">C.1. Use Case: Add meal entry</a></li>
+</ul>
+</li>
+<li><a href="#non-functional-requirements">Appendix D: Non-functional Requirements</a></li>
+<li><a href="#glossary">Appendix E: Glossary</a></li>
+<li><a href="#product-survey">Appendix F: Product Survey</a></li>
+<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
+<ul class="sectlevel2">
+<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -310,278 +340,125 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>ModelManager<
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
+<div class="sect2">
+<h3 id="add-feature"><a class="link" href="#add-feature">3.1. Add feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
 <div class="paragraph">
-<p>=== [Proposed] Report feature
-==== Proposed Implementation</p>
+<p>The <code>add</code> feature uses the Model to check if the dish is already in the database.
+If the dish is already in the database, the meal will be added to the meal log only.
+If the dish the user wants to add is not in the database,
+then the dish will be added to both the meal log and the dish database so that the user
+can conveniently add it the next time.</p>
 </div>
 <div class="paragraph">
-<p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.
-It returns <code>CommandResult</code> object that has the boolean "isReport" set to True.
-The <code>MainApp</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainApp#handleReport()</code> method.
-The <code>ReportWindow</code> object takes in a <code>Statistics</code> object that is created by calling <code>Logic#getStatistics()</code> which subsequently calls <code>Model#getStatistics()</code>.
-Additionally, the following operation is also implemented:</p>
+<p>There are a few cases to take note:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#getStatistics()</code>&#8201;&#8212;&#8201;gets the statistics of the current object.</p>
+<p>If the dish is in the dish database:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The user inserts the calorie information that is the same as the one in the dish database</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The dish will be added to the meal log only.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The user inserts the calorie information different from the calorie in the dish database</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This will create a new dish all together as there are differences in the calorie</p>
+</li>
+<li>
+<p>The new dish will be added to both the meal log as well as the dish database</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The user does not insert the calorie information</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The program will look through the dish database and get the calorie information from that dish.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If the dish is not in the dish database</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The user inserts the calorie information</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A new dish is created with that name and calorie information</p>
+</li>
+<li>
+<p>The dish will then be added to both the dish database as well as the meal log.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The user does not insert the calorie information</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The program sets the calorie information to 700 by default.</p>
+</li>
+<li>
+<p>The dish will then be added to both the dish database as well as the meal log</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the Report feature behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user starts up CaloFit for the first time. The <code>ModelManager</code> will contain a <code>MealLog</code> that has an empty list</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the user enters "report" in the Command Line Input with a <code>MealLog</code> that has no <code>Meal</code> entered this month, a <code>CommandException</code> will be thrown since there are no <code>Meal</code> to gather statistics pertaining to this month.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 2. The user has added a <code>Meal</code> into the <code>MealLog</code> through the <code>add</code> feature.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. The user enters "report" in the Command Line Input to generate the report of CaloFit. The <code>ReportCommand</code> created will return a <code>CommandResult</code> object with "isReport" set to True. When the <code>MainWindow</code> checks this boolean, it calls <code>MainWindow#handleReport()</code> that creates the <code>ReportWindow</code>.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the "report" command works.</p>
+<p>The following sequence diagram shows how the <code>add</code> operation works when calorie information is included:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ReportCommand.png" alt="ReportCommand">
+<img src="images/AddSequenceDiagram.png" alt="AddSequenceDiagram">
 </div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the <code>ReportWindow</code> is generated.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ReportWindow.png" alt="ReportWindow">
-</div>
+<p>To detect whether the calorie tag is used in the user input, we use an UNKNOWN_CALORIE in the Calorie class.
+This will trigger either search for the dish in the dish database or create a new dish and input it into the dish database.</p>
 </div>
 <div class="paragraph">
-<p>==== Design Considerations</p>
+<p>The input by the user and the dish in the dish database is considered equal only if both the name and the calorie information are the same.</p>
 </div>
 <div class="paragraph">
-<p>===== Aspect: When the <code>Statistics</code> object is saved.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Only when a "report" command is entered.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Less processes carried out for each type of command.</p>
-</li>
-<li>
-<p>Cons: At any point in using CaloFit, the statistics are likely not updated to the most recent command.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Every command saves a new updated <code>Statistics</code> object.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Logging of statistics can be accurate, and statistics are always updated.</p>
-</li>
-<li>
-<p>Cons: Unnecessary as user does not need to see the statistics other than through a "report" command and results in every command having to do more work and interact with the <code>Model</code> more, possibly creating more bugs.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Explanation of Choice:</strong> Since the user only needs to see the updated statistics when a "report" command is executed, we only need to generate a new <code>Statistics</code> object with the updated values for that command, hence <strong>Alternative 1</strong> is chosen to avoid adding unnecessary complexity to each command.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>===== Aspect: Data structure to store the statistics in CaloFit.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Wrap the values in a <code>Statistics</code> object.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Neater code and easier to understand, since all statistic-related values are stored in the <code>Statistics</code> object and are not implemented in the <code>Model</code>.</p>
-</li>
-<li>
-<p>Cons: Additional class to maintain and test for dependencies.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Store the values as a list in the <code>Model</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: The statistics can be updated easily through the <code>Model</code> itself by updating the elements in the list. Accessing the statistics to display is easier as well.</p>
-</li>
-<li>
-<p>Cons: Burdens the <code>Model</code> with a responsibility that is largely irrelevant to its current ones, which is to keep track of the Objects that make up the CaloFit model.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Explanation of Choice:</strong> To try and enforce Single Responsibility Principle as much as possible and avoid adding irrelavant functionality to <code>Model</code>.</p>
-</li>
-</ul>
+<p>Addition of tags are supported. However, they are not crucial to the implementation of the add function as tags are not considered when deciding equality of dishes.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-suggest-feature"><a class="link" href="#proposed-suggest-feature">3.1. [Proposed] Suggest feature</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.1.1. Proposed Implementation</a></h4>
-<div class="paragraph">
-<p>The suggest mechanism is implemented through a <code>SuggestCommand</code> that extends from the abstract <code>Command</code> class. It interacts with the object that implements the <code>Model</code> interface by updating it with dishes that are within the calories budget. The calories budget is obtained from <code>Model#getRemainingCalories()</code>.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, it implements the following operation:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Model#getRemainingCalories</code>&#8201;&#8212;&#8201;gets the current allowed calories budget.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This operation is exposed in the <code>Model</code> interface as <code>Model#getRemainingCalories()</code>.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the suggest mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user starts up CaloFit for the first time. The <code>DishDatabase</code> will be loaded with the initial data by calling <code>MainApp#loadDishDatabase</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the DishDatabase is empty, or the daily calorie budget have exceeded the set amount, or there are no dishes that is within the amount, nothing will be display.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 2. The user enters <code>"suggest"</code> in the Command Line Input to invoke the <code>SuggestCommand</code> command which will run <code>SuggestCommand#execute()</code>. <code>Model#getRemainingCalories()</code> will be executed to get the remaining calories, which will provide <code>#Model#updateFilteredDishList</code> with the calories budget to update the list accordingly.</p>
-</div>
-<div class="paragraph">
-<p>Step 3. The success message will be return, while printing the updated dish list on CaloFit.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the suggest operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SuggestCommand.png" alt="SuggestCommand">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-suggest-executes"><a class="link" href="#aspect-how-suggest-executes">Aspect: How suggest executes</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Update dish list with calorie budget</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Neater code, easier to maintain and uses lesser memory.</p>
-</li>
-<li>
-<p>Cons: Unable to get history of suggest list.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Create a new list for every <code>SuggestCommand</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easier to understand and customise if require data for method.</p>
-</li>
-<li>
-<p>Cons: Unnecessary memory wastage for list created and not used.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Explanation of Choice:</strong> Since we only need to show the user the current meal suggest, there are no usage for the past suggest result.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-suggest-command"><a class="link" href="#aspect-data-structure-to-support-the-suggest-command">Aspect: Data structure to support the suggest command</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Stores the value in a dish list.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Commonly used, thus easier to understand and easier to deal with. It can also be easily updated.</p>
-</li>
-<li>
-<p>Cons: Would constantly require <code>Model</code> with a responsibility that is not relevant to it&#8217;s current.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Wrap the values in a <code>Suggest</code> object</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Neater and easier to maintain, since all suggest-related values are stored in the <code>Suggest</code> object.</p>
-</li>
-<li>
-<p>Cons: Additional class to maintain, harder for newcomers to understand code with too many classes.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>=== Budget Bar display</p>
-</div>
+<h3 id="budget-bar-display"><a class="link" href="#budget-bar-display">3.2. Budget Bar display</a></h3>
 <div class="paragraph">
 <p>The budget bar display provides a graphic overview of meals consumed on the current day,
 comparing against the total calorie budget set by the user.</p>
 </div>
-<div class="paragraph">
-<p>==== Implementation</p>
-</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The budget bar feature is implemented via the <code>BudgetBar</code> class.
 It is a JavaFx UI component, which wraps around <code>MealLog</code> and <code>CalorieBudget</code>.
@@ -653,12 +530,11 @@ we compute several derived properties:</p>
 <img src="images/BudgetMealUpdate.png" alt="BudgetMealUpdate">
 </div>
 </div>
-<div class="paragraph">
-<p>==== Design Consideration</p>
 </div>
-<div class="paragraph">
-<p>===== Aspect: Base UI component to display meal segments.</p>
-</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.2.2. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-base-ui-component-to-display-meal-segments"><a class="link" href="#aspect-base-ui-component-to-display-meal-segments">Aspect: Base UI component to display meal segments.</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -729,22 +605,279 @@ Simpler implementation and better performance outweighs the cost of using an ext
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="suggest-feature"><a class="link" href="#suggest-feature">3.3. Suggest feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
 <div class="paragraph">
-<p>=== [Proposed] Notification</p>
+<p>The suggest mechanism is implemented through a <code>SuggestCommand</code> that extends from the abstract <code>Command</code> class. It interacts with the object that implements the <code>Model</code> interface by updating it with dishes that are within the calories budget. The calories budget is obtained from <code>Model#getRemainingCalories()</code>.</p>
 </div>
 <div class="paragraph">
-<p><em>{Explain here how the notification feature will be implemented}</em></p>
+<p>Additionally, it implements the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#getRemainingCalories</code>&#8201;&#8212;&#8201;gets the current allowed calories budget.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>=== Logging</p>
+<p>This operation is exposed in the <code>Model</code> interface as <code>Model#getRemainingCalories()</code>.</p>
 </div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the suggest mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user starts up CaloFit for the first time. The <code>DishDatabase</code> will be loaded with the initial data by calling <code>MainApp#loadDishDatabase</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the DishDatabase is empty, or the daily calorie budget have exceeded the set amount, or there are no dishes that is within the amount, nothing will be display.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user enters <code>"suggest"</code> in the Command Line Input to invoke the <code>SuggestCommand</code> command which will run <code>SuggestCommand#execute()</code>. <code>Model#getRemainingCalories()</code> will be executed to get the remaining calories, which will provide <code>#Model#updateFilteredDishList</code> with the calories budget to update the list accordingly.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The success message will be return, while printing the updated dish list on CaloFit.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the suggest operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SuggestCommand.png" alt="SuggestCommand">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.3.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-suggest-executes"><a class="link" href="#aspect-how-suggest-executes">Aspect: How suggest executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Update dish list with calorie budget</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater code, easier to maintain and uses lesser memory.</p>
+</li>
+<li>
+<p>Cons: Unable to get history of suggest list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a new list for every <code>SuggestCommand</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to understand and customise if require data for method.</p>
+</li>
+<li>
+<p>Cons: Unnecessary memory wastage for list created and not used.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> Since we only need to show the user the current meal suggest, there are no usage for the past suggest result.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-suggest-command"><a class="link" href="#aspect-data-structure-to-support-the-suggest-command">Aspect: Data structure to support the suggest command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Stores the value in a dish list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Commonly used, thus easier to understand and easier to deal with. It can also be easily updated.</p>
+</li>
+<li>
+<p>Cons: Would constantly require <code>Model</code> with a responsibility that is not relevant to it&#8217;s current.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Wrap the values in a <code>Suggest</code> object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater and easier to maintain, since all suggest-related values are stored in the <code>Suggest</code> object.</p>
+</li>
+<li>
+<p>Cons: Additional class to maintain, harder for newcomers to understand code with too many classes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="report-feature"><a class="link" href="#report-feature">3.4. Report feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.
+It returns <code>CommandResult</code> object that has the boolean "isReport" set to True.
+The <code>MainApp</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainApp#handleReport()</code> method.
+The <code>ReportWindow</code> object takes in a <code>Statistics</code> object that is created by calling <code>Logic#getStatistics()</code> which subsequently calls <code>Model#getStatistics()</code>.
+Additionally, the following operation is also implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#getStatistics()</code>&#8201;&#8212;&#8201;gets the statistics of the current object.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the Report feature behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user starts up CaloFit for the first time. The <code>ModelManager</code> will contain a <code>MealLog</code> that has an empty list</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user enters "report" in the Command Line Input with a <code>MealLog</code> that has no <code>Meal</code> entered this month, a <code>CommandException</code> will be thrown since there are no <code>Meal</code> to gather statistics pertaining to this month.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user has added a <code>Meal</code> into the <code>MealLog</code> through the <code>add</code> feature.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user enters "report" in the Command Line Input to generate the report of CaloFit. The <code>ReportCommand</code> created will return a <code>CommandResult</code> object with "isReport" set to True. When the <code>MainWindow</code> checks this boolean, it calls <code>MainWindow#handleReport()</code> that creates the <code>ReportWindow</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the "report" command works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ReportCommand.png" alt="ReportCommand">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>ReportWindow</code> is generated.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ReportWindow.png" alt="ReportWindow">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-when-the-code-statistics-code-object-is-saved"><a class="link" href="#aspect-when-the-code-statistics-code-object-is-saved">Aspect: When the <code>Statistics</code> object is saved.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Only when a "report" command is entered.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less processes carried out for each type of command.</p>
+</li>
+<li>
+<p>Cons: At any point in using CaloFit, the statistics are likely not updated to the most recent command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Every command saves a new updated <code>Statistics</code> object.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Logging of statistics can be accurate, and statistics are always updated.</p>
+</li>
+<li>
+<p>Cons: Unnecessary as user does not need to see the statistics other than through a "report" command and results in every command having to do more work and interact with the <code>Model</code> more, possibly creating more bugs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> Since the user only needs to see the updated statistics when a "report" command is executed, we only need to generate a new <code>Statistics</code> object with the updated values for that command, hence <strong>Alternative 1</strong> is chosen to avoid adding unnecessary complexity to each command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-store-the-statistics-in-calofit"><a class="link" href="#aspect-data-structure-to-store-the-statistics-in-calofit">Aspect: Data structure to store the statistics in CaloFit.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Wrap the values in a <code>Statistics</code> object.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater code and easier to understand, since all statistic-related values are stored in the <code>Statistics</code> object and are not implemented in the <code>Model</code>.</p>
+</li>
+<li>
+<p>Cons: Additional class to maintain and test for dependencies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Store the values as a list in the <code>Model</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The statistics can be updated easily through the <code>Model</code> itself by updating the elements in the list. Accessing the statistics to display is easier as well.</p>
+</li>
+<li>
+<p>Cons: Burdens the <code>Model</code> with a responsibility that is largely irrelevant to its current ones, which is to keep track of the Objects that make up the CaloFit model.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> To try and enforce Single Responsibility Principle as much as possible and avoid adding irrelavant functionality to <code>Model</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">[Implementation-Configuration]</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -773,44 +906,69 @@ Simpler implementation and better performance outweighs the cost of using an ext
 </li>
 </ul>
 </div>
-<div id="Implementation-Configuration" class="paragraph">
-<p>=== Configuration</p>
 </div>
+<div class="sect2">
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
-<div class="paragraph">
-<p>== Documentation</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Documentation.html">here</a>.</p>
 </div>
-<div class="paragraph">
-<p>== Testing</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Testing.html">here</a>.</p>
 </div>
-<div class="paragraph">
-<p>== Dev Ops</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="DevOps.html">here</a>.</p>
 </div>
-<div class="paragraph">
-<p>== Product Scope
-=== Target User Profile
-* Health-conscious people watching their diet
-* Prefer desktop applications over mobile apps
-* Comfortable enough to work with text command-based interfaces</p>
 </div>
-<div class="paragraph">
-<p>=== Value Proposition
-The app is able to help the user keep track of their calorie consumption. This way, they can ensure that they keep to their own diet plans.</p>
 </div>
-<div class="paragraph">
-<p>== User Stories</p>
+<div class="sect1">
+<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="target-user-profile"><a class="link" href="#target-user-profile">A.1. Target User Profile</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Health-conscious people watching their diet</p>
+</li>
+<li>
+<p>Prefer desktop applications over mobile apps</p>
+</li>
+<li>
+<p>Comfortable enough to work with text command-based interfaces</p>
+</li>
+</ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="value-proposition"><a class="link" href="#value-proposition">A.2. Value Proposition</a></h3>
+<div class="paragraph">
+<p>The app is able to help the user keep track of their calorie consumption. This way, they can ensure that they keep to their own diet plans.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all" style="width: 59%;">
 <colgroup>
 <col style="width: 25%;">
@@ -892,12 +1050,13 @@ The app is able to help the user keep track of their calorie consumption. This w
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
-<div class="paragraph">
-<p>== Use Cases</p>
 </div>
-<div class="paragraph">
-<p>=== Use Case: Add meal entry</p>
 </div>
+<div class="sect1">
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="use-case-add-meal-entry"><a class="link" href="#use-case-add-meal-entry">C.1. Use Case: Add meal entry</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -938,19 +1097,36 @@ Use case ends.</p>
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
-<div class="paragraph">
-<p>== Non-functional Requirements
-.	Should work on any mainstream OS as long as it has Java 11 or above installed.
-.	Should be able to hold up to 1000 meal entries without a noticeable sluggishness in performance for typical usage.
-.	A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </div>
-<div class="paragraph">
-<p>== Glossary
-<a id="mainstream-os"></a> Mainstream OS::
-Windows, Linux, macOS</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non-functional Requirements</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Should work on any mainstream OS as long as it has Java 11 or above installed.</p>
+</li>
+<li>
+<p>Should be able to hold up to 1000 meal entries without a noticeable sluggishness in performance for typical usage.</p>
+</li>
+<li>
+<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
+<div class="sectionbody">
 <div class="dlist">
 <dl>
+<dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
+<dd>
+<p>Windows, Linux, macOS</p>
+</dd>
 <dt class="hdlist1"><a id="meal-entry"></a> Meal entry</dt>
 <dd>
 <p>An entry representing a eaten meal.
@@ -959,9 +1135,11 @@ Contains meal name, calories, and date/time consumed.</p>
 <dt class="hdlist1"><a id="meal-db"></a> Meal database</dt>
 </dl>
 </div>
-<div class="paragraph">
-<p>== Product Survey</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Product Name</strong></p>
 </div>
@@ -994,9 +1172,11 @@ Contains meal name, calories, and date/time consumed.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>== Instructions for Manual Testing</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
 </div>
@@ -1012,9 +1192,8 @@ These instructions only provide a starting point for testers to work on; testers
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>=== Launch and Shutdown</p>
-</div>
+<div class="sect2">
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1050,9 +1229,9 @@ Expected: The most recent window size and location is retained.</p>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
-<div class="paragraph">
-<p>=== Deleting a person</p>
 </div>
+<div class="sect2">
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1082,9 +1261,9 @@ Expected: Similar to previous.</p>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
-<div class="paragraph">
-<p>=== Saving data</p>
 </div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1104,8 +1283,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 12:50:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 12:58:55 UTC</div></div></div></body></html>
