@@ -20,39 +20,7 @@
 <li><a href="#Design-Commons">2.6. Common classes</a></li>
 </ul>
 </li>
-<li><a href="#implementation">3. Implementation</a>
-<ul class="sectlevel2">
-<li><a href="#proposed-report-feature">3.1. [Proposed] Report feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
-</ul>
-</li>
-<li><a href="#documentation">4. Documentation</a></li>
-<li><a href="#testing">5. Testing</a></li>
-<li><a href="#dev-ops">6. Dev Ops</a></li>
-<li><a href="#product-scope">Appendix A: Product Scope</a>
-<ul class="sectlevel2">
-<li><a href="#target-user-profile">A.1. Target User Profile</a></li>
-<li><a href="#value-proposition">A.2. Value Proposition</a></li>
-</ul>
-</li>
-<li><a href="#user-stories">Appendix B: User Stories</a></li>
-<li><a href="#use-cases">Appendix C: Use Cases</a>
-<ul class="sectlevel2">
-<li><a href="#use-case-add-meal-entry">C.1. Use Case: Add meal entry</a></li>
-</ul>
-</li>
-<li><a href="#non-functional-requirements">Appendix D: Non-functional Requirements</a></li>
-<li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#product-survey">Appendix F: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
-<ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
-</ul>
-</li>
+<li><a href="#implementation">3. Implementation</a></li>
 </ul>
 </div>
 </div>
@@ -338,10 +306,12 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>ModelManager<
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
-<div class="sect2">
-<h3 id="proposed-report-feature"><a class="link" href="#proposed-report-feature">3.1. [Proposed] Report feature</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.1.1. Proposed Implementation</a></h4>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>=== [Proposed] Report feature
+==== Proposed Implementation</p>
+</div>
 <div class="paragraph">
 <p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.
 It returns <code>CommandResult</code> object that has the boolean "isReport" set to True.
@@ -396,11 +366,12 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 <img src="images/ReportWindow.png" alt="ReportWindow">
 </div>
 </div>
+<div class="paragraph">
+<p>==== Design Considerations</p>
 </div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-when-the-code-statistics-code-object-is-saved"><a class="link" href="#aspect-when-the-code-statistics-code-object-is-saved">Aspect: When the <code>Statistics</code> object is saved.</a></h5>
+<div class="paragraph">
+<p>===== Aspect: When the <code>Statistics</code> object is saved.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -434,9 +405,9 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>===== Aspect: Data structure to store the statistics in CaloFit.</p>
 </div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-store-the-statistics-in-calofit"><a class="link" href="#aspect-data-structure-to-store-the-statistics-in-calofit">Aspect: Data structure to store the statistics in CaloFit.</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -470,24 +441,148 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
+<p>=== [Proposed] Suggest feature</p>
+</div>
+<div class="paragraph">
+<p>==== Proposed Implementation</p>
+</div>
+<div class="paragraph">
+<p>The suggest mechanism is implemented through a <code>SuggestCommand</code> that extends from the abstract <code>Command</code> class. It interacts with the object that implements the <code>Model</code> interface by updating it with dishes that are within the calories budget. The calories budget is obtained from <code>Model#getRemainingCalories()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it implements the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#getRemainingCalories</code>&#8201;&#8212;&#8201;gets the current allowed calories budget.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This operation is exposed in the <code>Model</code> interface as <code>Model#getRemainingCalories()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the suggest mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user starts up CaloFit for the first time. The <code>DishDatabase</code> will be loaded with the initial data by calling <code>MainApp#loadDishDatabase</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the DishDatabase is empty, or the daily calorie budget have exceeded the set amount, or there are no dishes that is within the amount, nothing will be display.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user enters <code>"suggest"</code> in the Command Line Input to invoke the <code>SuggestCommand</code> command which will run <code>SuggestCommand#execute()</code>. <code>Model#getRemainingCalories()</code> will be executed to get the remaining calories, which will provide <code>#Model#updateFilteredDishList</code> with the calories budget to update the list accordingly.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The success message will be return, while printing the updated dish list on CaloFit.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the suggest operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SuggestCommand.png" alt="SuggestCommand">
 </div>
 </div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<div class="paragraph">
+<p>==== Design Considerations</p>
+</div>
+<div class="paragraph">
+<p>===== Aspect: How suggest executes</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Update dish list with calorie budget</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater code, easier to maintain and uses lesser memory.</p>
+</li>
+<li>
+<p>Cons: Unable to get history of suggest list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a new list for every <code>SuggestCommand</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to understand and customise if require data for method.</p>
+</li>
+<li>
+<p>Cons: Unnecessary memory wastage for list created and not used.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> Since we only need to show the user the current meal suggest, there are no usage for the past suggest result.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>===== Aspect: Data structure to support the suggest command</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Stores the value in a dish list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Commonly used, thus easier to understand and easier to deal with. It can also be easily updated.</p>
+</li>
+<li>
+<p>Cons: Would constantly require <code>Model</code> with a responsibility that is not relevant to it&#8217;s current.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Wrap the values in a <code>Suggest</code> object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater and easier to maintain, since all suggest-related values are stored in the <code>Suggest</code> object.</p>
+</li>
+<li>
+<p>Cons: Additional class to maintain, harder for newcomers to understand code with too many classes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== [Proposed] Notification</p>
+</div>
+<div class="paragraph">
+<p><em>{Explain here how the notification feature will be implemented}</em></p>
+</div>
+<div class="paragraph">
+<p>=== Logging</p>
+</div>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">[Implementation-Configuration]</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -516,69 +611,44 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 </li>
 </ul>
 </div>
+<div id="Implementation-Configuration" class="paragraph">
+<p>=== Configuration</p>
 </div>
-<div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
+<div class="paragraph">
+<p>== Documentation</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Documentation.html">here</a>.</p>
 </div>
+<div class="paragraph">
+<p>== Testing</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Testing.html">here</a>.</p>
 </div>
+<div class="paragraph">
+<p>== Dev Ops</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="DevOps.html">here</a>.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="target-user-profile"><a class="link" href="#target-user-profile">A.1. Target User Profile</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Health-conscious people watching their diet</p>
-</li>
-<li>
-<p>Prefer desktop applications over mobile apps</p>
-</li>
-<li>
-<p>Comfortable enough to work with text command-based interfaces</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="value-proposition"><a class="link" href="#value-proposition">A.2. Value Proposition</a></h3>
 <div class="paragraph">
-<p>The app is able to help the user keep track of their calorie consumption. This way, they can ensure that they keep to their own diet plans.</p>
+<p>== Product Scope
+=== Target User Profile
+* Health-conscious people watching their diet
+* Prefer desktop applications over mobile apps
+* Comfortable enough to work with text command-based interfaces</p>
 </div>
+<div class="paragraph">
+<p>=== Value Proposition
+The app is able to help the user keep track of their calorie consumption. This way, they can ensure that they keep to their own diet plans.</p>
 </div>
+<div class="paragraph">
+<p>== User Stories</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all" style="width: 59%;">
 <colgroup>
 <col style="width: 25%;">
@@ -660,13 +730,12 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
+<div class="paragraph">
+<p>== Use Cases</p>
 </div>
+<div class="paragraph">
+<p>=== Use Case: Add meal entry</p>
 </div>
-<div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="use-case-add-meal-entry"><a class="link" href="#use-case-add-meal-entry">C.1. Use Case: Add meal entry</a></h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -707,36 +776,19 @@ Use case ends.</p>
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
+<div class="paragraph">
+<p>== Non-functional Requirements
+.	Should work on any mainstream OS as long as it has Java 11 or above installed.
+.	Should be able to hold up to 1000 meal entries without a noticeable sluggishness in performance for typical usage.
+.	A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </div>
+<div class="paragraph">
+<p>== Glossary
+<a id="mainstream-os"></a> Mainstream OS::
+Windows, Linux, macOS</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non-functional Requirements</a></h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Should work on any mainstream OS as long as it has Java 11 or above installed.</p>
-</li>
-<li>
-<p>Should be able to hold up to 1000 meal entries without a noticeable sluggishness in performance for typical usage.</p>
-</li>
-<li>
-<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
-<div class="sectionbody">
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
-<dd>
-<p>Windows, Linux, macOS</p>
-</dd>
 <dt class="hdlist1"><a id="meal-entry"></a> Meal entry</dt>
 <dd>
 <p>An entry representing a eaten meal.
@@ -745,11 +797,9 @@ Contains meal name, calories, and date/time consumed.</p>
 <dt class="hdlist1"><a id="meal-db"></a> Meal database</dt>
 </dl>
 </div>
+<div class="paragraph">
+<p>== Product Survey</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Product Name</strong></p>
 </div>
@@ -782,11 +832,9 @@ Contains meal name, calories, and date/time consumed.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>== Instructions for Manual Testing</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
 </div>
@@ -802,8 +850,9 @@ These instructions only provide a starting point for testers to work on; testers
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
+<div class="paragraph">
+<p>=== Launch and Shutdown</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -839,9 +888,9 @@ Expected: The most recent window size and location is retained.</p>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
+<div class="paragraph">
+<p>=== Deleting a person</p>
 </div>
-<div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -871,9 +920,9 @@ Expected: Similar to previous.</p>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
+<div class="paragraph">
+<p>=== Saving data</p>
 </div>
-<div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -893,4 +942,5 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 11:26:47 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 12:16:25 UTC</div></div></div></body></html>
