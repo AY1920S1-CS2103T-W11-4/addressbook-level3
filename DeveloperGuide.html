@@ -741,16 +741,31 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <div class="paragraph">
 <p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.
 It returns <code>CommandResult</code> object that has the boolean "isReport" set to True.
-The <code>MainApp</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainApp#handleReport()</code> method.
+The <code>MainWindow</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainWindow#handleReport()</code> method.
 The <code>ReportWindow</code> object takes in a <code>Statistics</code> object that is created by calling <code>Logic#getStatistics()</code> which subsequently calls <code>Model#getStatistics()</code>.
-Additionally, the following operation is also implemented:</p>
+The <code>Model</code> then returns the <code>Statistics</code> object that is created based on the <code>CalorieBudget</code> and <code>MealLog</code> in the <code>Model</code>.
+Additionally, the following operations are implemented in <code>Statistics</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#getStatistics()</code>&#8201;&#8212;&#8201;gets the statistics of the current object.</p>
+<p><code>Statistics#generateStatistics(CalorieBudget, MealLog)</code>&#8201;&#8212;&#8201;gets the statistics of the current object. Maximum, Minimum and Average calorie intake per day of the month are calculated internally in this method.</p>
+</li>
+<li>
+<p><code>Statistics#getCalorieExceedCount(CalorieBudget, ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the number of days where calorie intake exceeded the calorie budget for that day.</p>
+</li>
+<li>
+<p><code>Statistics#getMostConsumedDishes(ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the list of dishes which are consumed the most in the current month.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Given below is a Class Diagram that shows how the ReportCommand interacts with other components of CaloFit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ReportClassDiagram.png" alt="ReportClassDiagram">
+</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the Report feature behaves at each step.</p>
@@ -775,6 +790,14 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 </div>
 <div class="paragraph">
 <p>Step 3. The user enters "report" in the Command Line Input to generate the report of CaloFit. The <code>ReportCommand</code> created will return a <code>CommandResult</code> object with "isReport" set to True. When the <code>MainWindow</code> checks this boolean, it calls <code>MainWindow#handleReport()</code> that creates the <code>ReportWindow</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises the above usage scenario.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ReportCommandActivityDiagram.png" alt="ReportCommandActivityDiagram">
+</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the "report" command works.</p>
@@ -1283,4 +1306,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 12:00:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 12:02:54 UTC</div></div></div></body></html>
