@@ -23,11 +23,12 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#add-feature">3.1. Add feature</a></li>
-<li><a href="#budget-bar-display">3.2. Budget Bar display</a></li>
-<li><a href="#suggest-feature">3.3. Suggest feature</a></li>
-<li><a href="#report-feature">3.4. Report feature</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#delete-feature">3.2. Delete feature</a></li>
+<li><a href="#budget-bar-display">3.3. Budget Bar display</a></li>
+<li><a href="#suggest-feature">3.4. Suggest feature</a></li>
+<li><a href="#report-feature">3.5. Report feature</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -344,12 +345,21 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>ModelManager<
 <h3 id="add-feature"><a class="link" href="#add-feature">3.1. Add feature</a></h3>
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
+<div class="sect4">
+<h5 id="addition-though-flags-e-g-add-n-chicken-c-200-t-dry"><a class="link" href="#addition-though-flags-e-g-add-n-chicken-c-200-t-dry">Addition though flags (e.g add n/Chicken c/200 t/dry)</a></h5>
+<div class="paragraph">
+<p>The <code>add</code> feature is implemented through the <code>AddCommand</code> class that extends the abstract <code>Command</code> class.
+It interacts with other objects through the <code>Model</code> interface to manipulate the meal log and dish database to add meals.</p>
+</div>
+<div class="paragraph">
+<p>The addition of meals is done through <code>Model#addMeal()</code> which would add the meal from the meal log list.</p>
+</div>
 <div class="paragraph">
 <p>The <code>add</code> feature uses the Model to check if the dish is already in the database.
-If the dish is already in the database, the meal will be added to the meal log only.
+If the dish is already in the database, the meal will be added to the meal log only through the <code>Model#addMeal()</code> method.
 If the dish the user wants to add is not in the database,
-then the dish will be added to both the meal log and the dish database so that the user
-can conveniently add it the next time.</p>
+then the dish will be added to both the meal log and the dish database through the <code>Model#addMeal()</code> and
+<code>Model#addDish()</code> methods respectively.</p>
 </div>
 <div class="paragraph">
 <p>There are a few cases to take note:</p>
@@ -357,7 +367,7 @@ can conveniently add it the next time.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If the dish is in the dish database:</p>
+<p>If the dish name is in the dish database:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -397,7 +407,7 @@ can conveniently add it the next time.</p>
 </div>
 </li>
 <li>
-<p>If the dish is not in the dish database</p>
+<p>If the dish name is not in the dish database</p>
 <div class="ulist">
 <ul>
 <li>
@@ -447,18 +457,163 @@ This will trigger either search for the dish in the dish database or create a ne
 <p>The input by the user and the dish in the dish database is considered equal only if both the name and the calorie information are the same.</p>
 </div>
 <div class="paragraph">
-<p>Addition of tags are supported. However, they are not crucial to the implementation of the add function as tags are not considered when deciding equality of dishes.</p>
+<p>Addition of tags are supported. However, they are not crucial to the implementation of the add
+function as tags are not considered when deciding equality of dishes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="addition-though-indexes-in-suggested-find-meal-list-e-g-add-1-2-3"><a class="link" href="#addition-though-indexes-in-suggested-find-meal-list-e-g-add-1-2-3">Addition though indexes in suggested/find meal list (e.g add 1 2 3)</a></h5>
+<div class="paragraph">
+<p>The <code>add</code> feature also supports the addition of meals through indexes in the suggested meal list.
+This is done to improve the user experience as they do not have to always enter the long commands.</p>
+</div>
+<div class="paragraph">
+<p>This feature is also implemented through the <code>AddCommand</code> class that extends the abstract <code>Command</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>add</code> command in this case takes in a list of numbers pass to it through the <code>AddCommandParser</code>. The checking of valid
+indexes is done by the <code>AddCommandParser</code>. Once the list is passed to the <code>AddCommand</code>, it calls <code>Model#getFilteredDishlist()</code>
+which returns the filtered dish list. The add command will then loop through
+the list of indexes and get the respective dishes from the filtered dish list.</p>
+</div>
+<div class="paragraph">
+<p>We cannot add the meal immediately to the meal log as the filtered dish list would change when the calorie count changes. Hence the
+meals are first added to separate a <code>toBeAddedMealList</code> and once all the indexes are added to that list,
+<code>MealLog#addListOfMeals(toBeAddedMealList)</code> is called to add all the meals in to the meal log at once.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.1.2. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-what-is-considered-the-same-meal"><a class="link" href="#aspect-what-is-considered-the-same-meal">Aspect: What is considered the same meal</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current choice):</strong> Compare name and calorie only</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More precise compared to just comparing names.</p>
+</li>
+<li>
+<p>Cons: Complications when adding meals.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Compare name only</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy comparison. Reduces complications when adding meals.</p>
+</li>
+<li>
+<p>Cons: High collision.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of choice:</strong> As a calorie counter, the calories is an important
+part of the meal. Hence we need to consider it when comparing meals. Certain meals
+with the same name may not have the same amount of calories. Hence we decided to go
+with alternative 1.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="budget-bar-display"><a class="link" href="#budget-bar-display">3.2. Budget Bar display</a></h3>
+<h3 id="delete-feature"><a class="link" href="#delete-feature">3.2. Delete feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>delete</code> feature is implemented through the <code>DeleteCommand</code> class that extends the abstract <code>Command</code> class.
+It interacts with other objects through the <code>Model</code> interface to manipulate the meal log and remove meals.</p>
+</div>
+<div class="paragraph">
+<p>The <code>delete</code> command allows for removal of multiple dishes with a single command.
+The <code>delete</code> command takes in a <code>listOfIndex</code> passed to it by the <code>DeleteCommandParser</code>. The checking of valid integers
+is done by the <code>DeleteCommandParser</code>. Once the listOfIndex is passed to the <code>DeleteCommand</code>, it sorts the list from largest index
+to smallest index using the <code>Collections.sort(listOfIndex, Comparator.reverseOrder())</code>. The <code>DeleteCommand</code> then loops through
+the sorted list and checks if the index is within the size of the meal log. If the index is valid, <code>DeleteCommand</code> will
+remove the respective meal from the meal log.</p>
+</div>
+<div class="paragraph">
+<p>The removal of meals is done through the <code>Model#removeMeal(meal)</code> which would remove the meal from the meal log list.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>delete</code> operation works when index 1 is deleted:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteSequenceDiagram.png" alt="DeleteSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Below is the activity diagram that summarises the scenario when "delete 1" is called by the user.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteActivityDiagram.png" alt="DeleteActivityDiagram">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.2.2. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-is-the-meal-removed"><a class="link" href="#aspect-how-is-the-meal-removed">Aspect: How is the meal removed</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current Choice):</strong> Removed after the listOfIndex is sorted.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Prevent the reordering of the meal log causing the larger indexes to correspond to a different meal or
+out of bounds. (e.g delete 1 2 for a meal log with 2 meals. If we delete 1 first, the meal log will change to having 1 meal.
+The meal previously at index 2 is now at index 1. When doing delete 2, the meal at index 2 is now out of bounds as the meal log
+only has 1 meal.)</p>
+</li>
+<li>
+<p>Cons: The command may take some time when handling large amounts of input. This is due to the sorting required.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Loop through the indexes in the <code>DeleteCommandParser</code> and create a new <code>DeleteCommand</code> for every index.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Simple morphing of previous delete method.</p>
+</li>
+<li>
+<p>Cons: Have to change other parts of the model breaking abstraction.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Explanation of Choice:</strong> The command is for the deletion of meals for that day. A person on average consumes 3 - 4 meals a day.
+Hence on average, the most meals to be deleted is 4. Thus the sorting time would not be too significant. Also,</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="budget-bar-display"><a class="link" href="#budget-bar-display">3.3. Budget Bar display</a></h3>
 <div class="paragraph">
 <p>The budget bar display provides a graphic overview of meals consumed on the current day,
 comparing against the total calorie budget set by the user.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The budget bar feature is implemented via the <code>BudgetBar</code> class.
 It is a JavaFx UI component, which wraps around <code>MealLog</code> and <code>CalorieBudget</code>.
@@ -532,7 +687,7 @@ we compute several derived properties:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">3.2.2. Design Consideration</a></h4>
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.3.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-base-ui-component-to-display-meal-segments"><a class="link" href="#aspect-base-ui-component-to-display-meal-segments">Aspect: Base UI component to display meal segments.</a></h5>
 <div class="ulist">
@@ -609,12 +764,12 @@ Simpler implementation and better performance outweighs the cost of using an ext
 </div>
 </div>
 <div class="sect2">
-<h3 id="suggest-feature"><a class="link" href="#suggest-feature">3.3. Suggest feature</a></h3>
+<h3 id="suggest-feature"><a class="link" href="#suggest-feature">3.4. Suggest feature</a></h3>
 <div class="paragraph">
 <p>The suggest feature displays the suggested automatically to the user accordingly to the remaining calorie budget.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The suggest mechanism is toggled when the application starts up. It will always display the suggested meals for the user in the right pane. The feature can be can be toggled back by typing the "suggest" command. Through a <code>SuggestCommand</code> that extends from the abstract <code>Command</code> class. It interacts with the object that implements the <code>Model</code> interface by updating it with dishes that are within the calories budget. The calories budget is obtained from <code>Model#getRemainingCalories()</code>.</p>
 </div>
@@ -665,7 +820,7 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-suggest-executes"><a class="link" href="#aspect-how-suggest-executes">Aspect: How suggest executes</a></h5>
 <div class="ulist">
@@ -738,9 +893,9 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 </div>
 </div>
 <div class="sect2">
-<h3 id="report-feature"><a class="link" href="#report-feature">3.4. Report feature</a></h3>
+<h3 id="report-feature"><a class="link" href="#report-feature">3.5. Report feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
+<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.
 It returns <code>CommandResult</code> object that has the boolean "isReport" set to True.
@@ -820,7 +975,7 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-when-the-code-statistics-code-object-is-saved"><a class="link" href="#aspect-when-the-code-statistics-code-object-is-saved">Aspect: When the <code>Statistics</code> object is saved.</a></h5>
 <div class="ulist">
@@ -896,14 +1051,14 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -934,7 +1089,7 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1309,4 +1464,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 03:00:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 23:51:50 UTC</div></div></div></body></html>
