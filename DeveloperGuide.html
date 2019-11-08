@@ -897,23 +897,45 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <div class="sect3">
 <h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.
-It returns <code>CommandResult</code> object that has the boolean "isReport" set to True.
-The <code>MainWindow</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainWindow#handleReport()</code> method.
-The <code>ReportWindow</code> object takes in a <code>Statistics</code> object that is created by calling <code>Logic#getStatistics()</code> which subsequently calls <code>Model#getStatistics()</code>.
-The <code>Model</code> then returns the <code>Statistics</code> object that is created based on the <code>CalorieBudget</code> and <code>MealLog</code> in the <code>Model</code>.
+<p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.<br>
+It returns a <code>CommandResult</code> object that has the boolean "isReport" set to True when <code>ReportCommand#execute(Model)</code> is called.<br>
+The <code>MainWindow</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainWindow#handleReport()</code> method.<br>
+The <code>ReportWindow</code> object takes in a <code>Statistics</code> object that is created by calling <code>Logic#getStatistics()</code> which subsequently calls <code>Model#getStatistics()</code>. The <code>Model</code> then returns the <code>Statistics</code> object that is created based on the <code>CalorieBudget</code> and <code>MealLog</code> in the <code>Model</code>.<br>
 Additionally, the following operations are implemented in <code>Statistics</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Statistics#generateStatistics(CalorieBudget, MealLog)</code>&#8201;&#8212;&#8201;gets the statistics of the current object. Maximum, Minimum and Average calorie intake per day of the month are calculated internally in this method.</p>
+<p><code>Statistics#generateStatistics(ObservableList&lt;Meal&gt;, CalorieBudget)</code>&#8201;&#8212;&#8201;gets the statistics of the current object. Maximum, Minimum and Average calorie intake per day of the current month are calculated internally in this method.</p>
 </li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+While the above method takes in an <code>ObservableList&lt;Meal&gt;</code> instead of a <code>MealLog</code>, the list is generated from the <code>MealLog</code> and passed as the argument to avoid unnecessary interaction between the <code>MealLog</code> and <code>Statistics</code> classes.<br>
+Therefore, even though <code>MealLog</code> is not taken in as a parameter, <code>Statistics</code> still depeneds on <code>MealLog</code> to get the data for generating the report.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p><code>Statistics#getCalorieExceedCount(CalorieBudget, ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the number of days where calorie intake exceeded the calorie budget for that day.</p>
 </li>
 <li>
 <p><code>Statistics#getMostConsumedDishes(ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the list of dishes which are consumed the most in the current month.</p>
+</li>
+<li>
+<p><code>Statistics#getFoodChartSeries(ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the series containing the dishes eaten this month and their respective quantities.</p>
+</li>
+<li>
+<p><code>Statistics#getCalorieChartSeries(ObservableList&lt;Meal)</code>&#8201;&#8212;&#8201;gets the series that representing the amount of calories taken by the user over the past month.</p>
 </li>
 </ul>
 </div>
@@ -929,7 +951,7 @@ Additionally, the following operations are implemented in <code>Statistics</code
 <p>Given below is an example usage scenario and how the Report feature behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user starts up CaloFit for the first time. The <code>ModelManager</code> will contain a <code>MealLog</code> that has an empty list</p>
+<p>Step 1. The user starts up CaloFit for the first time. The <code>ModelManager</code> will contain a <code>MealLog</code> that has an empty list.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -965,6 +987,23 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 <img src="images/ReportCommand.png" alt="ReportCommand">
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The parameters of the constructor of <code>CommandResult</code> in the above diagram are as follows, from left to right:<br>
+String message&#8201;&#8212;&#8201;the message to be displayed to the user in the GUI.<br>
+boolean showHelp: indicates if the <code>HelpWindow</code> should be generated.<br>
+boolean showReport: indicates if the <code>ReportWindow</code> should be generated.<br>
+boolean isExit: indicates if the application should exit along with any other windows that are being shown.<br>
+Hence, only showReport is set to true to indicate that a <code>ReportWindow</code> should be created, while the rest of the booleans are set to false.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the <code>ReportWindow</code> is generated.</p>
 </div>
@@ -977,7 +1016,7 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-when-the-code-statistics-code-object-is-saved"><a class="link" href="#aspect-when-the-code-statistics-code-object-is-saved">Aspect: When the <code>Statistics</code> object is saved.</a></h5>
+<h5 id="aspect-when-the-code-statistics-code-object-is-created"><a class="link" href="#aspect-when-the-code-statistics-code-object-is-created">Aspect: When the <code>Statistics</code> object is created.</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -988,13 +1027,13 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 <p>Pros: Less processes carried out for each type of command.</p>
 </li>
 <li>
-<p>Cons: At any point in using CaloFit, the statistics are likely not updated to the most recent command.</p>
+<p>Cons: At any point in using CaloFit, the statistics are not updated since the object is only created when the "report" command is entered.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Every command saves a new updated <code>Statistics</code> object.</p>
+<p><strong>Alternative 2:</strong> Every command creates a new updated <code>Statistics</code> object.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1464,4 +1503,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-08 06:33:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-08 06:34:34 UTC</div></div></div></body></html>
