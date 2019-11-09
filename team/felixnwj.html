@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Felix Ng - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Felix Ng - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-calofit"><a class="link" href="#project-calofit">PROJECT: CaloFit</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My team of 4 software engineering students and I were tasked with enhancing a basic desktop addressbook application(AddressBook - Level 3) for our Software Engineering project. We chose to morph
+it into a calorie tracker cum food database system called CaloFit. This enhanced application allows health-conscious people or those who are aiming for a diet to set their calorie budget for the day; manage the meals that they take; find dishes based on keywords or their remaining calorie budget; and get data about their calorie intake progress through a report.</p>
+</div>
+<div class="paragraph">
+<p>CaloFit is a desktop application for tracking the calories that the user has taken from his or her meals over the course of using the application.<br>
+The user interacts with CaloFit using a Command Line Interface(CLI) that is represented by a box near the top of the application screen. This is where the user can type in their commands and press "Enter" on their keyboards to execute them.<br>
+It has a Graphical User Interface(GUI) created with JavaFX. The GUI is the main display that the user sees upon starting up CaloFit.</p>
+</div>
+<div class="paragraph">
+<p>This is what our project looks like as shown in Figure 1 below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PPPMain.png" alt="PPPMain">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 1: The GUI for CaloFit.</p>
+</div>
+<div class="paragraph">
+<p>My role was to design and write the codes for the <code>report</code> feature. The following sections
+illustrate these enhancements in more detail, as well as the relevant documentation I have added to
+the user and developer guides in relation to these enhancements.</p>
+</div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This symbol indicates important information.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>report</code> A grey highlight(called a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows a summary of my coding, documentation, and other helpful contributions to the
+team project.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>the ability to generate a Report</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: creates a Report that displays the statistics calculated from the user&#8217;s meal history for that particualar month.</p>
+</li>
+<li>
+<p>Justification: This feature gives purpose to the application as the user should be someone who wants to keep track of their calorie intake. By implementing this feature, the user is able to know their calorie intake for the month, as well as other statistics generated from it, whenever they want.</p>
+</li>
+<li>
+<p>Highlights: As virtually any form of statistical data can be generated from a user&#8217;s meal history, the scope of the data calculated and shown to the user is not exhaustive. The statistics chosen to be calculated are decided based on the user stories and use cases that our team has considered and is linked here.</p>
+</li>
+<li>
+<p>Credits: {Calculation of statistics}</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added <strong>automatic saving of the meal history of the user as a JavaScript Objection Notation(JSON) file</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The user&#8217;s meal entries into CaloFit will be saved into a JSON file, allowing the user&#8217;s meal history to be loaded upon starting up CaloFit.</p>
+</li>
+<li>
+<p>Justification: This small feature is crucial as we need to ensure that the user&#8217;s meal log is saved in order to track his or her progress since he or she started using CaloFit.</p>
+</li>
+<li>
+<p>Credits: The methods and structure of converting a Class into a JSON file was taken from the original AddressBook-Level 3 and refactored for the purpose mentioned above.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=felixnwj&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=FelixNWJ&amp;tabRepo=AY1920S1-CS2103T-W11-4%2Fmain%5Bmaster%5D">Functional code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.2.1</code>, <code>v1.3</code> and <code>v1.4</code> (3 releases) on GitHub.</p>
+</li>
+<li>
+<p>Overall project leader, scheduled meeting timings and summarised each meeting afterwards for dissemination to group members.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (<a href="https://github.com/FelixNWJ/ped/issues">List of bugs reported</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up Travis Continuous Integration for my Individual project and helped the team integrate it into the Team project.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide as we had to update the original AddressBook-Level3 User Guide with instructions for the enhancements that we had added. The following is an excerpt from our <strong>CaloFit User Guide</strong>, showing additions that I have made for the <code>report</code> feature. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide for the <code>report</code> feature. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="report-feature"><a class="link" href="#report-feature">Report feature</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.<br>
+It returns a <code>CommandResult</code> object that has the boolean "isReport" set to True when <code>ReportCommand#execute(Model)</code> is called.<br>
+The <code>MainWindow</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainWindow#handleReport()</code> method.<br>
+The <code>ReportWindow</code> object takes in a <code>Statistics</code> object that is created by calling <code>Logic#getStatistics()</code> which subsequently calls <code>Model#getStatistics()</code>. The <code>Model</code> then returns the <code>Statistics</code> object that is created based on the <code>CalorieBudget</code> and <code>MealLog</code> in the <code>Model</code>.<br>
+Additionally, the following operations are implemented in <code>Statistics</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Statistics#generateStatistics(ObservableList&lt;Meal&gt;, CalorieBudget)</code>&#8201;&#8212;&#8201;gets the statistics of the current object. Maximum, Minimum and Average calorie intake per day of the current month are calculated internally in this method.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+While the above method takes in an <code>ObservableList&lt;Meal&gt;</code> instead of a <code>MealLog</code>, the list is generated from the <code>MealLog</code> and passed as the argument to avoid unnecessary interaction between the <code>MealLog</code> and <code>Statistics</code> classes.<br>
+Therefore, even though <code>MealLog</code> is not taken in as a parameter, <code>Statistics</code> still depeneds on <code>MealLog</code> to get the data for generating the report.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Statistics#getCalorieExceedCount(CalorieBudget, ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the number of days where calorie intake exceeded the calorie budget for that day.</p>
+</li>
+<li>
+<p><code>Statistics#getMostConsumedDishes(ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the list of dishes which are consumed the most in the current month.</p>
+</li>
+<li>
+<p><code>Statistics#getFoodChartSeries(ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the series containing the dishes eaten this month and their respective quantities.</p>
+</li>
+<li>
+<p><code>Statistics#getCalorieChartSeries(ObservableList&lt;Meal)</code>&#8201;&#8212;&#8201;gets the series that representing the amount of calories taken by the user over the past month.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is a Class Diagram that shows how the ReportCommand interacts with other components of CaloFit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReportClassDiagram.png" alt="ReportClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the Report feature behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user starts up CaloFit for the first time. The <code>ModelManager</code> will contain a <code>MealLog</code> that has an empty list.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user enters "report" in the Command Line Input with a <code>MealLog</code> that has no <code>Meal</code> entered this month, a <code>CommandException</code> will be thrown since there are no <code>Meal</code> to gather statistics pertaining to this month.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user has added a <code>Meal</code> into the <code>MealLog</code> through the <code>add</code> feature.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The user enters "report" in the Command Line Input to generate the report of CaloFit. The <code>ReportCommand</code> created will return a <code>CommandResult</code> object with "isReport" set to True. When the <code>MainWindow</code> checks this boolean, it calls <code>MainWindow#handleReport()</code> that creates the <code>ReportWindow</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises the above usage scenario.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReportCommandActivityDiagram.png" alt="ReportCommandActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the "report" command works.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReportCommand.png" alt="ReportCommand">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The parameters of the constructor of <code>CommandResult</code> in the above diagram are as follows, from left to right:<br>
+String message&#8201;&#8212;&#8201;the message to be displayed to the user in the GUI.<br>
+boolean showHelp: indicates if the <code>HelpWindow</code> should be generated.<br>
+boolean showReport: indicates if the <code>ReportWindow</code> should be generated.<br>
+boolean isExit: indicates if the application should exit along with any other windows that are being shown.<br>
+Hence, only showReport is set to true to indicate that a <code>ReportWindow</code> should be created, while the rest of the booleans are set to false.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>ReportWindow</code> is generated.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReportWindow.png" alt="ReportWindow">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-when-the-code-statistics-code-object-is-created"><a class="link" href="#aspect-when-the-code-statistics-code-object-is-created">Aspect: When the <code>Statistics</code> object is created.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Only when a "report" command is entered.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less processes carried out for each type of command.</p>
+</li>
+<li>
+<p>Cons: At any point in using CaloFit, the statistics are not updated since the object is only created when the "report" command is entered.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Every command creates a new updated <code>Statistics</code> object.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Logging of statistics can be accurate, and statistics are always updated.</p>
+</li>
+<li>
+<p>Cons: Unnecessary as user does not need to see the statistics other than through a "report" command and results in every command having to do more work and interact with the <code>Model</code> more, possibly creating more bugs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> Since the user only needs to see the updated statistics when a "report" command is executed, we only need to generate a new <code>Statistics</code> object with the updated values for that command, hence <strong>Alternative 1</strong> is chosen to avoid adding unnecessary complexity to each command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-store-the-statistics-in-calofit"><a class="link" href="#aspect-data-structure-to-store-the-statistics-in-calofit">Aspect: Data structure to store the statistics in CaloFit.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Wrap the values in a <code>Statistics</code> object.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater code and easier to understand, since all statistic-related values are stored in the <code>Statistics</code> object and are not implemented in the <code>Model</code>.</p>
+</li>
+<li>
+<p>Cons: Additional class to maintain and test for dependencies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Store the values as a list in the <code>Model</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The statistics can be updated easily through the <code>Model</code> itself by updating the elements in the list. Accessing the statistics to display is easier as well.</p>
+</li>
+<li>
+<p>Cons: Burdens the <code>Model</code> with a responsibility that is largely irrelevant to its current ones, which is to keep track of the Objects that make up the CaloFit model.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> To try and enforce Single Responsibility Principle as much as possible and avoid adding irrelavant functionality to <code>Model</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 06:09:46 UTC</div></div></div></body></html>
