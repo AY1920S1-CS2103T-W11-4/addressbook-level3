@@ -1075,6 +1075,36 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <div class="paragraph">
 <p>The notification feature is automatically activated when the application starts up. On start up, it is implemented through a  <code>NotificationHelper</code> that gets information from <code>Model#getMealLog().getTodayMeals()</code> method to check if there are any meal consumed and if a meal has been consumed. The <code>NotificationHelper</code> class would the do a check on the timestamp of the latest meals by using various methods in the <code>Notification</code> class, more details explain below. If a meal have been missed, a notification will be prompted to the user to consume their meal, this prompt will constantly pop up every 10 minutes until a meal have been consumed. If a meal have been consumed within the period then the user can continue using the application without any prompt.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Notification will be prompted:<br>
+- After 10am for breakfast<br>
+- After 2pm for lunch<br>
+- After 8pm for dinner
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Meals that will be counted:
+- As breakfast - anytime<br>
+- As lunch - after 11am<br>
+- As dinner - after 4pm<br>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Additionally, it implements the following operation:</p>
 </div>
@@ -1087,7 +1117,7 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <p><code>Notification#eatenBreakfast</code>&#8201;&#8212;&#8201;returns a boolean value to indicate have the user eaten their breakfast.</p>
 </li>
 <li>
-<p><code>Notification#eatenLunch</code>&#8201;&#8212;&#8201;returns a boolean value to indicate have the user eaten their lucnh.</p>
+<p><code>Notification#eatenLunch</code>&#8201;&#8212;&#8201;returns a boolean value to indicate have the user eaten their lunch.</p>
 </li>
 <li>
 <p><code>Notification#eatenDinner</code>&#8201;&#8212;&#8201;returns a boolean value to indicate have the user eaten their dinner.</p>
@@ -1107,7 +1137,7 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The application will immediately check once when the application is launched, then followed by every 10 minutes interval.
+The application will immediately check once, when the application is launched, followed by every 10 minutes interval.
 </td>
 </tr>
 </table>
@@ -1780,4 +1810,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 10:55:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 13:12:06 UTC</div></div></div></body></html>
