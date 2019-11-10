@@ -516,6 +516,19 @@ meals are first added to separate a <code>toBeAddedMealList</code> and once all 
 </div>
 </li>
 <li>
+<p><strong>Alternative 3</strong> Compare name, calories and tags</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Very precise comparison.</p>
+</li>
+<li>
+<p>Cons: May cause the dish database to get very large just because the tag is different</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong>Explanation of choice:</strong> As a calorie counter, the calories is an important
 part of the meal. Hence we need to consider it when comparing meals. Certain meals
 with the same name may not have the same amount of calories. Hence we decided to go
@@ -523,6 +536,46 @@ with alternative 1.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-data-structure-when-storing-in-meals-in-meal-log"><a class="link" href="#aspect-data-structure-when-storing-in-meals-in-meal-log">3.1.3. Aspect: Data structure when storing in meals in meal log</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (Current choice):</strong> Use arraylist to store meals in meal log</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Able to delete by index.</p>
+</li>
+<li>
+<p>Cons: Interacting with the meal log will be slow.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use a hash map to store the meals in meal log</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Able quickly retrieve information from the meal log.</p>
+</li>
+<li>
+<p>Cons: Unable to delete through index. Also unable to store duplicates of the same meal.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of choice:</strong> The user may consume the same meal within the day. If we use a hash
+map, we will not be able to store the duplicate meals easily. Hash map does not preserve order.
+Hence, showing on the meal list section would be difficult as well. A user may not have a large
+amount of meals daily. Hence the array list would not be that large. Therefore, despite its limitation,
+an array list is still used.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -599,7 +652,7 @@ only has 1 meal.)</p>
 </li>
 <li>
 <p><strong> Explanation of Choice:</strong> The command is for the deletion of meals for that day. A person on average consumes 3 - 4 meals a day.
-Hence on average, the most meals to be deleted is 4. Thus the sorting time would not be too significant. Also,</p>
+Hence on average, the most meals to be deleted is 4. Thus the sorting time would not be too significant.</p>
 </li>
 </ul>
 </div>
@@ -1503,4 +1556,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 06:09:46 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 08:16:51 UTC</div></div></div></body></html>
