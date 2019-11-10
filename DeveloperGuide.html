@@ -821,12 +821,12 @@ Simpler implementation and better performance outweighs the cost of using an ext
 <div class="sect3">
 <h4 id="find-feature"><a class="link" href="#find-feature">3.4.1. Find feature</a></h4>
 <div class="paragraph">
-<p>The find feature display the result of the searched dish on the right pane to the user.</p>
+<p>The find feature displays the result of the searched dish on the right pane to the user.</p>
 </div>
 <div class="sect4">
 <h5 id="implementation-5"><a class="link" href="#implementation-5">Implementation</a></h5>
 <div class="paragraph">
-<p>The find mechanism is toggled when the user type in the "find" command. Through a <code>FindCommand</code> that extends from the abstract <code>Command</code> class. It interacts with the object that implements <code>Model</code> interface by updating the observable list with a predicate that contains what the user is searching for.</p>
+<p>The find mechanism is toggled when the user types in the "find" command. Through a <code>FindCommand</code> that extends from the abstract <code>Command</code> class. It interacts with the object that implements <code>Model</code> interface by updating the observable list with a predicate that contains what the user is searching for.</p>
 </div>
 <div class="paragraph">
 <p>Given below is a Class Diagram that shows how the FindCommand interacts with other components of CaloFit.</p>
@@ -980,7 +980,7 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <p>Step 2. The user enters "suggest" in the Command Line Input to invoke the <code>SuggestCommand</code> command which will run <code>SuggestCommand#execute()</code>. <code>Model#getRemainingCalories()</code> will be executed to get the remaining calories, which will provide <code>#Model#updateFilteredDishList</code> with the calories budget to update the list accordingly.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. The success message will be return, while printing the updated dish list on CaloFit right pane.</p>
+<p>Step 3. The success message will be returns, while printing the updated dish list on CaloFit right pane.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the suggest operation works:</p>
@@ -1004,7 +1004,7 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Neater code, easier to maintain and uses lesser memory.</p>
+<p>Pros: Neater code, easier to maintain and uses less memory.</p>
 </li>
 <li>
 <p>Cons: Unable to get history of suggest list.</p>
@@ -1043,7 +1043,7 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <p>Pros: Commonly used, thus easier to understand and easier to deal with. It can also be easily updated.</p>
 </li>
 <li>
-<p>Cons: Would constantly require <code>Model</code> with a responsibility that is not relevant to it&#8217;s current.</p>
+<p>Cons: Would constantly require <code>Model</code> with a responsibility that is not relevant to its current.</p>
 </li>
 </ul>
 </div>
@@ -1068,12 +1068,12 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 <div class="sect3">
 <h4 id="notification-feature"><a class="link" href="#notification-feature">3.4.3. Notification feature</a></h4>
 <div class="paragraph">
-<p>The notification feature prompts the user with new window if a meal have been missed.</p>
+<p>The notification feature prompts the user with new window if a meal had been missed.</p>
 </div>
 <div class="sect4">
 <h5 id="implementation-7"><a class="link" href="#implementation-7">Implementation</a></h5>
 <div class="paragraph">
-<p>The notification feature is automatically activated when the application starts up. On start up, it is implemented through a  <code>NotificationHelper</code> that gets information from <code>Model#getMealLog().getTodayMeals()</code> method to check if there are any meal consumed and if a meal has been consumed. The <code>NotificationHelper</code> class would the do a check on the timestamp of the latest meals by using various methods in the <code>Notification</code> class, more details explain below. If a meal have been missed, a notification will be prompted to the user to consume their meal, this prompt will constantly pop up every 10 minutes until a meal have been consumed. If a meal have been consumed within the period then the user can continue using the application without any prompt.</p>
+<p>The notification feature is automatically activated when the application starts up. On start up, it is implemented through a  <code>NotificationHelper</code> that gets information from <code>Model#getMealLog().getTodayMeals()</code> method to check if there are any meal consumed and if a meal had been consumed. The <code>NotificationHelper</code> class would the do a check on the timestamp of the latest meals by using various methods in the <code>Notification</code> class, more details are given below. If a meal had been missed, a notification will be prompted to the user to consume his meal, this prompt will constantly pop up every 10 minutes until a meal had been consumed. If a meal had been consumed within the period then the user can continue using the application without any prompt.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1111,16 +1111,16 @@ Meals that will be counted:
 <div class="ulist">
 <ul>
 <li>
-<p>A "timer" object that is in the <code>UIManager</code> class will ensure that the notifications are executed on a 10 minutes interval.</p>
+<p>A "timer" object that is in the <code>UIManager</code> class will ensure that the notifications are executed in 10 minutes interval.</p>
 </li>
 <li>
-<p><code>Notification#eatenBreakfast</code>&#8201;&#8212;&#8201;returns a boolean value to indicate have the user eaten their breakfast.</p>
+<p><code>Notification#eatenBreakfast</code>&#8201;&#8212;&#8201;returns a boolean value to indicate whether the user has eaten their breakfast.</p>
 </li>
 <li>
-<p><code>Notification#eatenLunch</code>&#8201;&#8212;&#8201;returns a boolean value to indicate have the user eaten their lunch.</p>
+<p><code>Notification#eatenLunch</code>&#8201;&#8212;&#8201;returns a boolean value to indicate whether the user has eaten their lunch.</p>
 </li>
 <li>
-<p><code>Notification#eatenDinner</code>&#8201;&#8212;&#8201;returns a boolean value to indicate have the user eaten their dinner.</p>
+<p><code>Notification#eatenDinner</code>&#8201;&#8212;&#8201;returns a boolean value to indicate whether the user has eaten their dinner.</p>
 </li>
 </ul>
 </div>
@@ -1146,7 +1146,7 @@ The application will immediately check once, when the application is launched, f
 <p>Step 2. The application will then execute <code>NotificationHelper</code> once to check if any meal have been missed. If there is none then no notification will be prompted. If a meal is missed it will prompt to the user, and notify them every 10 minutes.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. After 10 minutes, <code>UIManager</code> will then execute <code>NotificationHelper</code> and check if the user have keyed in any meals. This process will carry on for every 10 mintues till the user key in their meal.</p>
+<p>Step 3. After 10 minutes, <code>UIManager</code> will then execute <code>NotificationHelper</code> and check if the user has keyed in any meals. This process will carry on for every 10 minutes utill the user keys in his meal.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the notification operation works:</p>
@@ -1170,7 +1170,7 @@ The application will immediately check once, when the application is launched, f
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Ensure that lesser memory is used, so that buffer overflow is not possible. Furthermore user would not be annoying by multiple tabs.</p>
+<p>Pros: Ensure that less memory is used, so that buffer overflow is not possible. Furthermore user would not be annoyed by multiple tabs.</p>
 </li>
 <li>
 <p>Cons: Higher chance of notification not showing up due to a single error.</p>
@@ -1183,7 +1183,7 @@ The application will immediately check once, when the application is launched, f
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Less prone to mistake as previous notification will still stay till user clear it.</p>
+<p>Pros: Less prone to mistake as previous notification will still stay until the user clears it.</p>
 </li>
 <li>
 <p>Cons: Require much more memory as a new window is created, if the user was away for a period of time and the application was left opened, user would be required to clear quite a number of tabs.</p>
@@ -1192,7 +1192,7 @@ The application will immediately check once, when the application is launched, f
 </div>
 </li>
 <li>
-<p><strong>Explanation of Choice:</strong> Since this feature provide the user as an assistance, we should not bring in more hassle and inconvenience to the user. Thus even with a higher risk of notification not showing up due to error. After 10 more minutes the notification will be prompted.</p>
+<p><strong>Explanation of Choice:</strong> Since this feature serves as an assistance to the user, we should not bring in more hassle and inconvenience to the user. Thus even with a higher risk of notification not showing up due to error. After 10 more minutes the notification will be prompted.</p>
 </li>
 </ul>
 </div>
@@ -1810,4 +1810,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 13:12:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:01:03 UTC</div></div></div></body></html>
