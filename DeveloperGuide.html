@@ -53,7 +53,7 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#generating-the-report">G.3. Generating the report</a></li>
 </ul>
 </li>
 </ul>
@@ -1790,24 +1790,133 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
+<h3 id="generating-the-report"><a class="link" href="#generating-the-report">G.3. Generating the report</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All test cases assume an empty meal log prior to the inputs. To ensure this, you can go to the directory where you installed CaloFit, click on the "data" directory, and delete the mealLog.json file before restarting the application.
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Dealing with missing/corrupted data files</p>
+<p>Generation of Report.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>Test case: No meals in input for current month.<br>
+Expected: Report is <strong>NOT</strong> generated. An error message will be shown in the result display box of CaloFit.</p>
+</li>
+<li>
+<p>Test case: Any number of meals has been entered for current month.<br>
+Expected: Report is generated normally.</p>
+</li>
+<li>
+<p>Test case: Any number of meals has been entered for current month and system time is changed to a different month or year.<br>
+Expected: Report may initially be wrong as stated in the [<a href="https://github.com/AY1920S1-CS2103T-W11-4/main/blob/master/docs/UserGuide.adoc">Report Feature of our User Guide</a>]. The data in CaloFit will be updated in 2 minutes to fit this change in system time, after which the scenario will be similiar to the previous test case.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Testing validity of number of days where Calorie of the month</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add n/carbonara c/689</code>, <code>set 500</code>, followed by <code>report</code>.<br>
+Expected: Number of days calorie intake exceeded budget will be 1.</p>
+</li>
+<li>
+<p>Test case: same as previous, with additional <code>set 1000</code> at the end.<br>
+Expected: Number of days calorie intake exceeded budget will be 0.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Testing validity of list of most consumed dishes.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add n/carbonara c/689</code>, <code>add n/beef stew c/200</code>, followed by <code>report</code>.<br>
+Expected: Carbonara and Beef Stew will be in list.</p>
+</li>
+<li>
+<p>Test case: same as previous, with additional <code>add n/carbonara c/690</code> before <code>report</code>.<br>
+Expected: Only Carbonara will be in the list.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Testing validity of Calorie Over Time graph.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add n/carbonara c/689</code>, <code>add n/beef stew c/200</code>, followed by <code>report</code>.<br>
+Expected: Calorie intake for today&#8217;s date will be 889.</p>
+</li>
+<li>
+<p>Test case: same as previous, with additional <code>add n/beef stew c/200</code> before <code>report</code>.<br>
+Expected: Calorie intake for today&#8217;s date will be 1089.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Testing validity of Quantity of Food Consumed graph.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add n/carbonara c/689</code>, followed by <code>report</code><br>
+Expected: Quantity of carbonara consumed will be 1.</p>
+</li>
+<li>
+<p>Test case: <code>add n/carbonara c/689</code>, <code>add n/beef stew c/200</code>, followed by <code>report</code>.<br>
+Expected: Quantity of carbonara consumed will be 1. Quantity of beef stew consumed will be 1.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Testing validity of Maximum, Minimum, and Average calorie intake of the month.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test Case: <code>add n/carbonara c/689</code>, followed by <code>report</code>.<br>
+Expected: Maximum will be 689, Minimum will be 0, and Average will be 22.</p>
+</li>
+<li>
+<p>Test case: <code>add n/carbonara c/689</code>, <code>add n/beef stew c/200</code>, followed by <code>report</code>.<br>
+Expected: Maximum will be 889, Minimum will be 0, and Average will be 29(for 30 day months) or 28(for 31 day months).</p>
+</li>
+<li>
+<p>Test case: same as previous, with additional <code>add n/beef stew c/200</code> before <code>report</code> on a different day in the same month.<br>
+Expected: Maximum will be 889, Minimum will be 0, and Average will be 36(for 30 day months) or 35(for 31 day months).</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As the above test case requires a change in system time, do allow 2 minutes for CaloFit to be updated, as stated in Point 1(Generation of Report).
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:01:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:07:20 UTC</div></div></div></body></html>
