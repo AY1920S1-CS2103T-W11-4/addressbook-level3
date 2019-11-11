@@ -1,0 +1,549 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Maurice Tan - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Maurice Tan - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-calofit"><a class="link" href="#project-calofit">PROJECT: CaloFit</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My team of 4 software engineering student and I were tasked with enhancing a basic command line interface desktop addressbook application(AddressBook – Level 3) for our Software Engineering project. We chose to morph it into a calories tracker management system called CaloFit. This enhanced application provides health-conscious people or those who are aiming for a diet to set their calorie budget for the day or to simply input their meal for the day; a calorie budget tracker that manages the meal that they take; find dishes based on keywords; suggest a meal with the remaining calorie budget; notify the user if the user missed a meal; and get data about their calorie intake progress through a report.</p>
+</div>
+<div class="paragraph">
+<p>CaloFit is a desktop application for tracking the calories that the user has taken from his or her meals over the course of using the application.<br>
+The user interacts with CaloFit using a Command Line Interface(CLI) that is represented by a box near the top of the application screen. This is where the user can type in their commands and press "Enter" on their keyboards to execute them.<br>
+It has a Graphical User Interface(GUI) created with JavaFX. The GUI is the main display that the user sees upon starting up CaloFit.</p>
+</div>
+<div class="paragraph">
+<p>This is what our project looks like as shown in Figure 1 below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PPPMain.png" alt="PPPMain">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 1. The graphical user interface for CaloFit.</p>
+</div>
+<div class="paragraph">
+<p>My role was to design and write the codes for the <code>suggest</code> and <code>notification</code> features. The following sections illustrate these enhancements in more detail, as well as the relevant documentation I have added to the user and developer guides in relation to these enhancements.</p>
+</div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This symbol indicates important information.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>suggest</code> A grey highlight (called a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows a summary of my coding, documentation, and other helpful contributions to the team project.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement 1</strong>: added <strong>the ability to suggest meals</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: automatically provides the user with suggested meals based on the remaining calorie budget. Ability to toggled between finding meal and suggested meals.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because as a user most of the time we would not know what to eat, and a list of suggested meal will help us the user to decide on their meal quicker. Moreover, the suggested meals are all within the calorie budget, hence the user would not need to worry about having a meal that will be over their current calorie budget.</p>
+</li>
+<li>
+<p>Highlights: This enhancement affects the future suggestion for a whole day meal plan or exercise plan that would be added in future. This feature provides the user with convenience of choosing a meal, and could potentially be the income generating factor for CaloFit.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement 2</strong>: added <strong>the ability to notify user when a meal is missed</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: the user will be prompted with a notification when a meal is missed.</p>
+</li>
+<li>
+<p>Justification: On top of keeping within the calorie budget range, this feature also ensure that the user follows a spread-out and balance diet, of eating their meal at allocated timing. Furthermore, it also ensures that the user will not miss their meal throughout their busy day schedule.</p>
+</li>
+<li>
+<p>Highlights: This enhancement affects the future implementation of notification being set by the user and users being allowed to decide on what they want to be notified about. This feature provides the user with a worry-free experience, as they need not worry about forgetting their meal in future.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=mauricetxs&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=MauriceTXS&amp;tabRepo=AY1920S1-CS2103T-W11-4%2Fmain%5Bmaster%5D">Functional code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (<a href="https://github.com/FelixNWJ/ped/issues">List of bugs reported</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide as we had to update the original AddressBook-Level 3 User Guide with instructions for the enhancements that we had added. The following is an excerpt from our <strong>CaloFit User Guide</strong>, showing additions that I have made for the <code>suggest</code> and <code>notification</code> feature. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="suggesting-meal-options-code-suggest-code"><a class="link" href="#suggesting-meal-options-code-suggest-code">Suggesting Meal options: <code>suggest</code></a></h3>
+<div class="paragraph">
+<p>Suggest possible meals based on user calorie intake budget.<br>
+The available meals will be shown under the "Suggested Meals" section of the application.<br>
+The suggest feature is automatically toggled when the application starts, however if you use the find feature which replaces the suggest feature, then the suggest feature can be toggled back by typing "suggest" into the command box.<br></p>
+</div>
+<div class="paragraph">
+<p>Example usage:
+You&#8217;re tired from work and you don&#8217;t want to think about what to eat for the day, you just want to have a meal to keep yourself full and stay within the calorie budget that you want set for yourself.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Type "suggest" into the command bar and press the 'enter' key, if you have previously used the find feature to look for a meal.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SuggestCommandToggle.png" alt="SuggestCommandToggle">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The budget was set to a huge budget to show that there are actually a list of food inside as shown in the image below.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SuggestCommandBefore.png" alt="SuggestCommandBefore">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The budget was then set to an average male budget of 2200, which then could be seen in the image that only those within the budget was shown.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SuggestCommandAfter.png" alt="SuggestCommandAfter">
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>suggest</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="notification-that-a-meal-is-missed"><a class="link" href="#notification-that-a-meal-is-missed">Notification that a meal is missed</a></h3>
+<div class="paragraph">
+<p>A notification will automatically be prompted when the application starts up or every 10 minutes if a meal is missed.<br>
+This feature cannot be disabled and will start once the application starts.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The first meal will always be breakfast, hence no matter at which timing, if the first meal is not consumed, it will always notify the user as breakfast missed.<br>
+If lunch have not been consumed after 8pm, notification will change and notify user that they have not consumed their dinner instead of lunch, as consuming two meals at once is not healthy.<br>
+Notification of dinner will notify the user till 11.59pm, then it will be counted as breakfast.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Notification will be prompted:<br>
+- After 10am for breakfast<br>
+- After 2pm for lunch<br>
+- After 8pm for dinner
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Meals that will be counted:
+- As breakfast - anytime<br>
+- As lunch - after 11am<br>
+- As dinner - after 4pm<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If breakfast is missed this will be how it looks like</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/NotificaitonMissedBreakfast.png" alt="NotificaitonMissedBreakfast">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If lunch is missed this will be how it looks like</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/NotificaitonMissedLunch.png" alt="NotificaitonMissedLunch">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If dinner is missed this will be how it looks like</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/NotificaitonMissedDinner.png" alt="NotificaitonMissedDinner">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide for the <code>suggest</code> and <code>notification</code> feature. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="suggest-feature"><a class="link" href="#suggest-feature">Suggest feature</a></h4>
+<div class="paragraph">
+<p>The suggest feature displays the suggested automatically to the user accordingly to the remaining calorie budget.</p>
+</div>
+<div class="sect4">
+<h5 id="implementation"><a class="link" href="#implementation">Implementation</a></h5>
+<div class="paragraph">
+<p>The suggest mechanism is toggled when the application starts up. It will always display the suggested meals for the user in the right pane. The feature can be can be toggled back by typing the "suggest" command. Through a <code>SuggestCommand</code> that extends from the abstract <code>Command</code> class. It interacts with the object that implements the <code>Model</code> interface by updating the observable list with dishes that are within the calories budget. The calories budget is obtained from <code>Model#getRemainingCalories()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it implements the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#getRemainingCalories</code>&#8201;&#8212;&#8201;gets the current allowed calories budget.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This operation is exposed in the <code>Model</code> interface as <code>Model#getRemainingCalories()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the suggest mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user starts up CaloFit for the first time. The <code>DishDatabase</code> will be loaded with the initial data by calling <code>MainApp#loadDishDatabase</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the DishDatabase is empty, or the daily calorie budget have exceeded the set amount, or there are no dishes that is within the amount, nothing will be display.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user enters "suggest" in the Command Line Input to invoke the <code>SuggestCommand</code> command which will run <code>SuggestCommand#execute()</code>. <code>Model#getRemainingCalories()</code> will be executed to get the remaining calories, which will provide <code>#Model#updateFilteredDishList</code> with the calories budget to update the list accordingly.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The success message will be returns, while printing the updated dish list on CaloFit right pane.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the suggest operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SuggestCommand.png" alt="SuggestCommand">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h5>
+
+</div>
+<div class="sect4">
+<h5 id="aspect-how-suggest-executes"><a class="link" href="#aspect-how-suggest-executes">Aspect: How suggest executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Update dish list with calorie budget</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater code, easier to maintain and uses less memory.</p>
+</li>
+<li>
+<p>Cons: Unable to get history of suggest list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a new list for every <code>SuggestCommand</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to understand and customise if require data for method.</p>
+</li>
+<li>
+<p>Cons: Unnecessary memory wastage for list created and not used.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> Since we only need to show the user the current meal suggest, there are no usage for the past suggest result.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-suggest-command"><a class="link" href="#aspect-data-structure-to-support-the-suggest-command">Aspect: Data structure to support the suggest command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Stores the value in a dish list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Commonly used, thus easier to understand and easier to deal with. It can also be easily updated.</p>
+</li>
+<li>
+<p>Cons: Would constantly require <code>Model</code> with a responsibility that is not relevant to its current.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Wrap the values in a <code>Suggest</code> object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Neater and easier to maintain, since all suggest-related values are stored in the <code>Suggest</code> object.</p>
+</li>
+<li>
+<p>Cons: Additional class to maintain, harder for newcomers to understand code with too many classes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="notification-feature"><a class="link" href="#notification-feature">Notification feature</a></h4>
+<div class="paragraph">
+<p>The notification feature prompts the user with new window if a meal had been missed.</p>
+</div>
+<div class="sect4">
+<h5 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h5>
+<div class="paragraph">
+<p>The notification feature is automatically activated when the application starts up. On start up, it is implemented through a <code>NotificationHelper</code> that gets information from <code>Model#getMealLog().getTodayMeals()</code> method to check if there are any meal consumed and if a meal had been consumed. The <code>NotificationHelper</code> class would the do a check on the timestamp of the latest meals by using various methods in the <code>Notification</code> class, more details are given below. If a meal had been missed, a notification will be prompted to the user to consume his meal, this prompt will constantly pop up every 10 minutes until a meal had been consumed. If a meal had been consumed within the period then the user can continue using the application without any prompt.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Notification will be prompted:<br>
+- After 10am for breakfast<br>
+- After 2pm for lunch<br>
+- After 8pm for dinner
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Meals that will be counted:
+- As breakfast - anytime<br>
+- As lunch - after 11am<br>
+- As dinner - after 4pm<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Additionally, it implements the following operation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A "timer" object that is in the <code>UIManager</code> class will ensure that the notifications are executed in 10 minutes interval.</p>
+</li>
+<li>
+<p><code>Notification#eatenBreakfast</code>&#8201;&#8212;&#8201;returns a boolean value to indicate whether the user has eaten their breakfast.</p>
+</li>
+<li>
+<p><code>Notification#eatenLunch</code>&#8201;&#8212;&#8201;returns a boolean value to indicate whether the user has eaten their lunch.</p>
+</li>
+<li>
+<p><code>Notification#eatenDinner</code>&#8201;&#8212;&#8201;returns a boolean value to indicate whether the user has eaten their dinner.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the notification mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user starts up CaloFit for the first time. The <code>DishDatabase</code> will be loaded with the initial data by calling <code>MainApp#loadDishDatabase</code> with an empty MealLog.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The application will immediately check once, when the application is launched, followed by every 10 minutes interval.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The application will then execute <code>NotificationHelper</code> once to check if any meal have been missed. If there is none then no notification will be prompted. If a meal is missed it will prompt to the user, and notify them every 10 minutes.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. After 10 minutes, <code>UIManager</code> will then execute <code>NotificationHelper</code> and check if the user has keyed in any meals. This process will carry on for every 10 minutes utill the user keys in his meal.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the notification operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/NotificationActivityDiagram.png" alt="NotificationActivityDiagram">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+
+</div>
+<div class="sect4">
+<h5 id="aspect-how-notification-executes"><a class="link" href="#aspect-how-notification-executes">Aspect: How notification executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Refocus the notification Window.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Ensure that less memory is used, so that buffer overflow is not possible. Furthermore user would not be annoyed by multiple tabs.</p>
+</li>
+<li>
+<p>Cons: Higher chance of notification not showing up due to a single error.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a new Window for each notification</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less prone to mistake as previous notification will still stay until the user clears it.</p>
+</li>
+<li>
+<p>Cons: Require much more memory as a new window is created, if the user was away for a period of time and the application was left opened, user would be required to clear quite a number of tabs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explanation of Choice:</strong> Since this feature serves as an assistance to the user, we should not bring in more hassle and inconvenience to the user. Thus even with a higher risk of notification not showing up due to error. After 10 more minutes the notification will be prompted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 05:49:44 UTC</div></div></div></body></html>
