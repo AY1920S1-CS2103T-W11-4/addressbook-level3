@@ -212,7 +212,7 @@ The following class plays an important role at the architecture level:</p>
 <p>The <mark>UI</mark> consists of a <mark>MainWindow</mark> that is made up of parts e.g.<mark>CommandBox</mark>, <mark>ResultDisplay</mark>, <mark>DishListPanel</mark>, <mark>StatusBarFooter</mark> etc. All these parts, including the <mark>MainWindow</mark>, inherit from the abstract <mark>UiPart</mark> class.<br></p>
 </div>
 <div class="paragraph">
-<p>The <mark>UI</mark> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <strong>.fxml</strong> files that are in the <strong>src/main/resources/view</strong> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/ui/MainWindow.java"><mark>MainWindow</mark></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/resources/view/MainWindow.fxml"><mark>MainWindow.fxml</mark></a></p>
+<p>The <mark>UI</mark> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <strong>.fxml</strong> files that are in the <strong>src/main/resources/view</strong> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/calofit/ui/MainWindow.java"><mark>MainWindow</mark></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/resources/view/MainWindow.fxml"><mark>MainWindow.fxml</mark></a></p>
 </div>
 <div class="paragraph">
 <p>The <mark>UI</mark> component,</p>
@@ -296,7 +296,7 @@ The lifeline for <mark>DeleteCommandParser</mark> should end at the destroy mark
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/model/Model.java"><mark>Model.java</mark></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/calofit/model/Model.java"><mark>Model.java</mark></a></p>
 </div>
 <div class="paragraph">
 <p>The <mark>Model</mark>,</p>
@@ -304,13 +304,27 @@ The lifeline for <mark>DeleteCommandParser</mark> should end at the destroy mark
 <div class="ulist">
 <ul>
 <li>
-<p>stores a <mark>UserPref</mark> object that represents the user&#8217;s preferences.</p>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the <mark>DishDatabase</mark> data and <mark>MealLog</mark> data.</p>
+<p>stores the DishDatabase data, MealLog data and CalorieBudget data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <mark>ObservableList&lt;Meal&gt;</mark> and <mark>ObservableList&lt;Dish&gt;</mark> that can be 'observed' e.g. the <mark>UI</mark> can be bound to this list so that it automatically updates when the data in the list change.</p>
+<p>exposes many unmodifiable properties that can be 'observed' by the UI component</p>
+<div class="ulist">
+<ul>
+<li>
+<p>List of today meals (<code>ObservableList&lt;Meal&gt;</code>)</p>
+</li>
+<li>
+<p>List of suggested/filtered dishes (<code>ObservableList&lt;Dish&gt;</code>)</p>
+</li>
+<li>
+<p>Current calorie budget (<code>CalorieBudget</code>)
+The UI components can be bound to this list, so that the UI automatically updates when the data in the list changes.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -328,11 +342,12 @@ The lifeline for <mark>DeleteCommandParser</mark> should end at the destroy mark
 </td>
 <td class="content">
 As a more OOP model, we can store a <mark>Tag</mark> list in <mark>ModelManager</mark>, which <mark>Dish</mark> can reference. This would allow <mark>ModelManager</mark> to only require one <mark>Tag</mark> object per unique <mark>Tag</mark>, instead of each <mark>Dish</mark> needing their own <mark>Tag</mark> object. An example of how such a model may look like is given below.<br>
-<br>
-<span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -770,7 +785,7 @@ we compute several derived properties:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following activity diagram shows the reactive update dependencies.</p>
+<p>The following object diagram shows the reactive update dependencies.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2112,4 +2127,4 @@ As the above test case requires a change in system time, do allow 2 minutes for 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 09:57:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:04:52 UTC</div></div></div></body></html>

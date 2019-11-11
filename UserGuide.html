@@ -12,20 +12,29 @@
 <li><a href="#introduction">1. Introduction</a></li>
 <li><a href="#about">2. About</a></li>
 <li><a href="#quick-start">3. Quick Start</a></li>
-<li><a href="#Features">4. Features</a>
+<li><a href="#UIOverview">4. UI Overview</a>
 <ul class="sectlevel2">
-<li><a href="#meal-tracking">4.1. Meal Tracking</a></li>
-<li><a href="#find-meals-in-the-meal-database-code-find-code">4.2. Find meals in the meal database: <code>find</code></a></li>
-<li><a href="#suggesting-meal-options-code-suggest-code">4.3. Suggesting Meal options: <code>suggest</code></a></li>
-<li><a href="#notification-that-a-meal-is-missed">4.4. Notification that a meal is missed</a></li>
-<li><a href="#setting-calorie-intake-budget-code-set-code">4.5. Setting calorie intake budget: <code>set</code></a></li>
-<li><a href="#generating-a-report-code-report-code">4.6. Generating a Report: <code>report</code></a></li>
-<li><a href="#shows-an-overview-of-commands-usable-in-calofit-code-help-code">4.7. Shows an overview of commands usable in CaloFit: <code>help</code></a></li>
+<li><a href="#command-box">4.1. Command Box</a></li>
+<li><a href="#budget-bar">4.2. Budget Bar</a></li>
+<li><a href="#consumed-meals">4.3. Consumed Meals</a></li>
+<li><a href="#suggested-meals">4.4. Suggested Meals</a></li>
 </ul>
 </li>
-<li><a href="#command-summary">5. Command Summary</a></li>
-<li><a href="#trouble-shooting-faq">6. Trouble shooting/FAQ</a></li>
-<li><a href="#product-glossary">7. Product Glossary</a></li>
+<li><a href="#Features">5. Features</a>
+<ul class="sectlevel2">
+<li><a href="#meal-tracking">5.1. Meal Tracking</a></li>
+<li><a href="#find-meals-in-the-meal-database-code-find-code">5.2. Find meals in the meal database: <code>find</code></a></li>
+<li><a href="#suggesting-meal-options-code-suggest-code">5.3. Suggesting Meal options: <code>suggest</code></a></li>
+<li><a href="#notification-that-a-meal-is-missed">5.4. Notification that a meal is missed</a></li>
+<li><a href="#setting-calorie-intake-budget-code-set-code">5.5. Setting calorie intake budget: <code>set</code></a></li>
+<li><a href="#generating-a-report-code-report-code">5.6. Generating a Report: <code>report</code></a></li>
+<li><a href="#shows-an-overview-of-commands-usable-in-calofit-code-help-code">5.7. Shows an overview of commands usable in CaloFit: <code>help</code></a></li>
+</ul>
+</li>
+<li><a href="#command-summary">6. Command Summary</a></li>
+<li><a href="#command-syntax-notes">7. Command Syntax Notes</a></li>
+<li><a href="#trouble-shooting-faq">8. Trouble shooting/FAQ</a></li>
+<li><a href="#product-glossary">9. Product Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -85,12 +94,91 @@
 </ol>
 </div>
 <div class="paragraph">
-<p>Refer to <a href="#Features">Section 4, &#8220;Features&#8221;</a> for details of each command.</p>
+<p>Refer to <a href="#Features">Section 5, &#8220;Features&#8221;</a> for details of each command.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Features"><a class="link" href="#Features">4. Features</a></h2>
+<h2 id="UIOverview"><a class="link" href="#UIOverview">4. UI Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section covers the various parts of the CaloFit user interface.</p>
+</div>
+<div class="sect2">
+<h3 id="command-box"><a class="link" href="#command-box">4.1. Command Box</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/command_bar.png" alt="command bar">
+</div>
+</div>
+<div class="paragraph">
+<p>The command box is the main means of interacting with CaloFit.
+Users can enter commands, as detailed in <a href="#Commands">[Commands]</a>, in order to work with the app.</p>
+</div>
+<div class="paragraph">
+<p>To submit a command, the user can press the <code>Enter</code> key.
+The application will parse and evaluate the command.
+Any further feedback from the command will be displayed in the feedback box below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/command_bar_err.png" alt="command bar err">
+</div>
+</div>
+<div class="paragraph">
+<p>If any error is encountered, the command text will not be cleared, and turn red.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="budget-bar"><a class="link" href="#budget-bar">4.2. Budget Bar</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/budgetbar_partial.png" alt="budgetbar partial">
+</div>
+</div>
+<div class="paragraph">
+<p>The budget bar shows a visual overview of the meals the user has consumed today.
+Each meal displayed in the budget bar is proportionately sized to its calories,
+and is labelled by its dish name.
+Additionally, a white buffer segment is shown, representing the remaining amount of calories availablee today.</p>
+</div>
+<div class="paragraph">
+<p>The <span class="yellow">yellow</span> mark indicates the current budget limit,
+while the <span class="red">red</span> mark indicates 120% of the current budget limit.
+This gives you a visual overview as to how much more the user can consume for today,
+and give a margin of error even when exceeding the budget.</p>
+</div>
+<div class="paragraph">
+<p>When the total calorie count of meals today exceeds even the 120% mark, the bar will not show a buffer segment.
+Instead, the meals will occupy the entire width of the bar, remaining proportionate to their calorie counts.
+The budget marks will also move to the appropriate positions, still representing 100% and 120% of the budget.</p>
+</div>
+<div class="paragraph">
+<p><em>Coming in v2.0:</em>
+When a meal&#8217;s bar segment is too small, its dish name will be hidden.
+Information on the dish still can be viewed as a tooltip, when hovering over the segment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="consumed-meals"><a class="link" href="#consumed-meals">4.3. Consumed Meals</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/consumed_pane.png" alt="consumed pane">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="suggested-meals"><a class="link" href="#suggested-meals">4.4. Suggested Meals</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/suggest_pane.png" alt="suggest pane">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Features"><a class="link" href="#Features">5. Features</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -100,25 +188,25 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/MEAL_NAME</code>, <code>MEAL_NAME</code> is a parameter which can be used as <code>add n/Carbonara</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/<a href="#mealname_syntax">MEAL_NAME</a></code>, <code><a href="#mealname_syntax">MEAL_NAME</a></code> is a parameter which can be used as <code>add n/Carbonara</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>add n/MEAL_NAME [c/CALORIES]</code> can be used as <code>add n/Carbonara c/430</code> or as <code>add n/Carbonara</code>.</p>
+<p>Items in square brackets are optional e.g <code>add n/<a href="#mealname_syntax">MEAL_NAME</a> [c/<a href="#calories_syntax">CALORIES</a>]</code> can be used as <code>add n/Carbonara c/430</code> or as <code>add n/Carbonara</code>.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="meal-tracking"><a class="link" href="#meal-tracking">4.1. Meal Tracking</a></h3>
+<h3 id="meal-tracking"><a class="link" href="#meal-tracking">5.1. Meal Tracking</a></h3>
 <div class="sect3">
-<h4 id="adding-a-meal-code-add-code"><a class="link" href="#adding-a-meal-code-add-code">4.1.1. Adding a meal: <code>add</code></a></h4>
+<h4 id="adding-a-meal-code-add-code"><a class="link" href="#adding-a-meal-code-add-code">5.1.1. Adding a meal: <code>add</code></a></h4>
 <div class="paragraph">
 <p>Adds a meal that the user ate to be tracked by CaloFit.<br>
 There are 2 formats that can be used:<br></p>
 </div>
 <div class="paragraph">
-<p>Format 1: <code>add n/MEAL_NAME [c/CALORIES] [t/TAGS]</code><br>
+<p>Format 1: <code>add n/<a href="#mealname_syntax">MEAL_NAME</a> [c/<a href="#calories_syntax">CALORIES</a>] [t/TAGS]</code><br>
 Inputting calories of the meal is optional.<br>
 If the meal is a dish stored in CaloFit, the calories will be taken from CaloFit. If not, a default value of 700 will be added for you,<br>
 Tags are completely optional and there is no default tag. You could also have more than 1 tag.<br></p>
@@ -136,7 +224,7 @@ e.g. <code>add 1 2 3</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-MEAL_NAME can only be a maximum of 30 characters to ensure it displays correctly for you.
+<a href="#mealname_syntax">MEAL_NAME</a> can only be a maximum of 30 characters to ensure it displays correctly for you.
 </td>
 </tr>
 </table>
@@ -259,11 +347,11 @@ meals header.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-previous-meal-entry-code-edit-code"><a class="link" href="#editing-previous-meal-entry-code-edit-code">4.1.2. Editing previous meal entry : <code>edit</code></a></h4>
+<h4 id="editing-previous-meal-entry-code-edit-code"><a class="link" href="#editing-previous-meal-entry-code-edit-code">5.1.2. Editing previous meal entry : <code>edit</code></a></h4>
 <div class="paragraph">
 <p>Edits a meal that the user previously ate today.<br>
-Format: <code>edit MEAL_NUMBER [n/NAME] [c/CALORIES] [t/TAGS]</code><br>
-The input of at least 1 field (either NAME, CALORIES or TAGS) is required.
+Format: <code>edit MEAL_NUMBER [n/<a href="#mealname_syntax">MEAL_NAME</a>] [c/<a href="#calories_syntax">CALORIES</a>] [t/TAGS]</code><br>
+The input of at least 1 field (either NAME, <a href="#calories_syntax">CALORIES</a> or TAGS) is required.
 A mix of the different fields is possible as well.</p>
 </div>
 <div class="paragraph">
@@ -287,7 +375,7 @@ A mix of the different fields is possible as well.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-previous-meal-entry-code-delete-code"><a class="link" href="#deleting-previous-meal-entry-code-delete-code">4.1.3. Deleting previous meal entry : <code>delete</code></a></h4>
+<h4 id="deleting-previous-meal-entry-code-delete-code"><a class="link" href="#deleting-previous-meal-entry-code-delete-code">5.1.3. Deleting previous meal entry : <code>delete</code></a></h4>
 <div class="paragraph">
 <p>Deletes a meal that the user previously ate today.<br>
 The meal will be removed from the consumed meal section<br>
@@ -359,7 +447,7 @@ in this example, Mushroom Soup is located at index 1.
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-meals-in-the-meal-database-code-find-code"><a class="link" href="#find-meals-in-the-meal-database-code-find-code">4.2. Find meals in the meal database: <code>find</code></a></h3>
+<h3 id="find-meals-in-the-meal-database-code-find-code"><a class="link" href="#find-meals-in-the-meal-database-code-find-code">5.2. Find meals in the meal database: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Searches for meals that contains the words the user has inputted.<br>
 The search results will be shown under the "Suggested Meals" section of the application.<br>
@@ -400,7 +488,7 @@ relevant calorie information.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="suggesting-meal-options-code-suggest-code"><a class="link" href="#suggesting-meal-options-code-suggest-code">4.3. Suggesting Meal options: <code>suggest</code></a></h3>
+<h3 id="suggesting-meal-options-code-suggest-code"><a class="link" href="#suggesting-meal-options-code-suggest-code">5.3. Suggesting Meal options: <code>suggest</code></a></h3>
 <div class="paragraph">
 <p>Suggest possible meals based on user calorie intake budget.<br>
 The available meals will be shown under the "Suggested Meals" section of the application.<br>
@@ -456,7 +544,7 @@ Type "suggest" into the command bar and press the 'enter' key, if you have previ
 </div>
 </div>
 <div class="sect2">
-<h3 id="notification-that-a-meal-is-missed"><a class="link" href="#notification-that-a-meal-is-missed">4.4. Notification that a meal is missed</a></h3>
+<h3 id="notification-that-a-meal-is-missed"><a class="link" href="#notification-that-a-meal-is-missed">5.4. Notification that a meal is missed</a></h3>
 <div class="paragraph">
 <p>A notification will automatically be prompted when the application starts up or every 10 minutes if a meal is missed.<br>
 This feature cannot be disabled and will start once the application starts.<br></p>
@@ -543,10 +631,14 @@ Meals that will be counted:
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-calorie-intake-budget-code-set-code"><a class="link" href="#setting-calorie-intake-budget-code-set-code">4.5. Setting calorie intake budget: <code>set</code></a></h3>
+<h3 id="setting-calorie-intake-budget-code-set-code"><a class="link" href="#setting-calorie-intake-budget-code-set-code">5.5. Setting calorie intake budget: <code>set</code></a></h3>
 <div class="paragraph">
 <p>Set user calorie intake budget for today.<br>
-Format: <code>set CALORIES</code></p>
+This will update the calorie bar to show reflect the new amount of calories remaining.
+If in suggestion mode, the suggest meals will also be refreshed depending on the calories remaining as well.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>set <a href="#calories_syntax">CALORIES</a></code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -560,7 +652,7 @@ Format: <code>set CALORIES</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="generating-a-report-code-report-code"><a class="link" href="#generating-a-report-code-report-code">4.6. Generating a Report: <code>report</code></a></h3>
+<h3 id="generating-a-report-code-report-code"><a class="link" href="#generating-a-report-code-report-code">5.6. Generating a Report: <code>report</code></a></h3>
 <div class="paragraph">
 <p>Want to have your very own report that summarises your calorie intake progress over this month? Here are the steps to create one now!:</p>
 </div>
@@ -674,7 +766,7 @@ To ensure correct data is displayed to you, allow 2 minutes for CaloFit to updat
 </div>
 </div>
 <div class="sect2">
-<h3 id="shows-an-overview-of-commands-usable-in-calofit-code-help-code"><a class="link" href="#shows-an-overview-of-commands-usable-in-calofit-code-help-code">4.7. Shows an overview of commands usable in CaloFit: <code>help</code></a></h3>
+<h3 id="shows-an-overview-of-commands-usable-in-calofit-code-help-code"><a class="link" href="#shows-an-overview-of-commands-usable-in-calofit-code-help-code">5.7. Shows an overview of commands usable in CaloFit: <code>help</code></a></h3>
 <div class="paragraph">
 <p>Displays all the commands that are usable in CaloFit, including examples of how to use them.<br>
 Format: <code>help</code></p>
@@ -683,12 +775,12 @@ Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/MEAL_NAME [c/CALORIES]</code><br>
+<p><strong>Add</strong> <code>add n/<a href="#mealname_syntax">MEAL_NAME</a> [c/<a href="#calories_syntax">CALORIES</a>]</code><br>
 e.g. <code>add n/duck rice c/360</code></p>
 </li>
 <li>
@@ -696,7 +788,7 @@ e.g. <code>add n/duck rice c/360</code></p>
 e.g. <code>add 1</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit MEAL_NUMBER [n/MEAL_NAME] [c/CALORIES]</code><br>
+<p><strong>Edit</strong> : <code>edit MEAL_NUMBER [n/<a href="#mealname_syntax">MEAL_NAME</a>] [c/<a href="#calories_syntax">CALORIES</a>]</code><br>
 e.g. <code>edit 1 n/duck noodle c/250</code></p>
 </li>
 <li>
@@ -704,7 +796,7 @@ e.g. <code>edit 1 n/duck noodle c/250</code></p>
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Set</strong> : <code>set CALORIES</code><br>
+<p><strong>Set</strong> : <code>set <a href="#calories_syntax">CALORIES</a></code><br>
 e.g. <code>set 2600</code></p>
 </li>
 <li>
@@ -728,7 +820,22 @@ e.g. <code>help</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="trouble-shooting-faq"><a class="link" href="#trouble-shooting-faq">6. Trouble shooting/FAQ</a></h2>
+<h2 id="command-syntax-notes"><a class="link" href="#command-syntax-notes">7. Command Syntax Notes</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a id="calorie_syntax"></a> Calorie values are positive integers from 0 to 2 billion, inclusive.</p>
+</li>
+<li>
+<p><a id="mealname_syntax"></a> Dish names must be alphanumeric (<code>[A-Z], [a-z],[0-9]</code>), and at most 30 characters long.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trouble-shooting-faq"><a class="link" href="#trouble-shooting-faq">8. Trouble shooting/FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Q: Do I need to key in the date or time?<br>
@@ -745,8 +852,8 @@ A:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-glossary"><a class="link" href="#product-glossary">7. Product Glossary</a></h2>
+<h2 id="product-glossary"><a class="link" href="#product-glossary">9. Product Glossary</a></h2>
 <div class="sectionbody">
 
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 09:57:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:04:52 UTC</div></div></div></body></html>

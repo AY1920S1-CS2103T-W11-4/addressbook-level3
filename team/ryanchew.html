@@ -1,0 +1,502 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ryan Chew - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ryan Chew - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-calofit"><a class="link" href="#project-calofit">PROJECT: CaloFit</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My team of 4 software engineering students and I were tasked with enhancing a basic desktop addressbook application(AddressBook - Level 3) for our Software Engineering project. We chose to morph
+it into a calorie tracker cum food database system called CaloFit. This enhanced application allows health-conscious people or those who are aiming for a diet to set their calorie budget for the day; manage the meals that they take; find dishes based on keywords or their remaining calorie budget; and get data about their calorie intake progress through a report.</p>
+</div>
+<div class="paragraph">
+<p>CaloFit is a desktop application for tracking the calories that the user has taken from his or her meals over the course of using the application.<br>
+The user interacts with CaloFit using a Command Line Interface(CLI) that is represented by a box near the top of the application screen. This is where the user can type in their commands and press "Enter" on their keyboards to execute them.<br>
+It has a Graphical User Interface(GUI) created with JavaFX. The GUI is the main display that the user sees upon starting up CaloFit.</p>
+</div>
+<div class="paragraph">
+<p>This is what our project looks like as shown in Figure 1 below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PPPMain.png" alt="PPPMain">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 1: The GUI for CaloFit.</p>
+</div>
+<div class="paragraph">
+<p>My roles were to handle the backend refactoring to morph the application, and to do the budget-related features.
+In the following sections, I will cover those changes and features, together with the relevant updates to
+the user and developer guides.</p>
+</div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This symbol indicates important information.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>report</code> A grey highlight(called a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows a summary of my coding, documentation, and other helpful contributions to the
+team project.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added a <strong>budget bar display</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does:
+Visually displays the user&#8217;s meals eaten today, as a progress-like bar. Each segment corresponds to one meal, and is sized accordingly.</p>
+</li>
+<li>
+<p>Justification:
+This feature gives immediate visual feedback to users, of the meals they have eaten today, and how much more they can eat.</p>
+</li>
+<li>
+<p>Highlights:
+The bar display is the most obvious user-facing result of the model refactoring process.</p>
+</li>
+<li>
+<p>Credits:
+The [<a href="https://github.com/controlsfx/controlsfx">ControlsFX library</a>] was used to provide the display of the segmented progress bar.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added a <strong><code>set</code> command to control total budget</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: This commandd allows the user to customize and set their (expected) daily calorie intake.</p>
+</li>
+<li>
+<p>Justification: This allows each user to tailor the app for their own diet plans.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added <strong>saving of the user&#8217;s historical calorie budget data to a JSON (Javascript Object Notation) file</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The user&#8217;s historical calorie budget data into CaloFit will be saved into a JSON file, allowing the user&#8217;s calorie budget history to be loaded upon starting up CaloFit.</p>
+</li>
+<li>
+<p>Justification: This feature is necessary to preserve the user&#8217;s past and current calorie budget/limit, both to reference in the budget bar, and be tracked in the statistics.</p>
+</li>
+<li>
+<p>Credits: The methods and structure of converting a Class into a JSON file was taken from the original AddressBook-Level 3 and refactored for the purpose mentioned above.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=iltep64&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=FelixNWJ&amp;tabRepo=AY1920S1-CS2103T-W11-4%2Fmain%5Bmaster%5D">Functional code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In charge of overall software architecture</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactored original AddressBook model structure, into something closer to our problem domain.</p>
+</li>
+<li>
+<p>Provided many low-level code infrastructure to support teammates' high-level features.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (<a href="https://github.com/iltep64/ped/issues">List of bugs reported</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced [<a href="https://site.mockito.org/">Mockito</a>], a mocking library to help test implementation.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the new purpose of the app, we had to change the AB3 user guide,
+with customized instructions for our application.
+The following are excerpts from our <strong>CaloFit User Guide</strong>.
+They showcase my ability to write documentation targeting end-users.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide, regarding the budget bar:</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="UIOverview"><a class="link" href="#UIOverview">UI Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section covers the various parts of the CaloFit user interface.</p>
+</div>
+<div class="sect2">
+<h3 id="command-box"><a class="link" href="#command-box">Command Box</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/command_bar.png" alt="command bar">
+</div>
+</div>
+<div class="paragraph">
+<p>The command box is the main means of interacting with CaloFit.
+Users can enter commands, as detailed in <a href="#Commands">[Commands]</a>, in order to work with the app.</p>
+</div>
+<div class="paragraph">
+<p>To submit a command, the user can press the <code>Enter</code> key.
+The application will parse and evaluate the command.
+Any further feedback from the command will be displayed in the feedback box below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/command_bar_err.png" alt="command bar err">
+</div>
+</div>
+<div class="paragraph">
+<p>If any error is encountered, the command text will not be cleared, and turn red.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="budget-bar"><a class="link" href="#budget-bar">Budget Bar</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/budgetbar_partial.png" alt="budgetbar partial">
+</div>
+</div>
+<div class="paragraph">
+<p>The budget bar shows a visual overview of the meals the user has consumed today.
+Each meal displayed in the budget bar is proportionately sized to its calories,
+and is labelled by its dish name.
+Additionally, a white buffer segment is shown, representing the remaining amount of calories availablee today.</p>
+</div>
+<div class="paragraph">
+<p>The <span class="yellow">yellow</span> mark indicates the current budget limit,
+while the <span class="red">red</span> mark indicates 120% of the current budget limit.
+This gives you a visual overview as to how much more the user can consume for today,
+and give a margin of error even when exceeding the budget.</p>
+</div>
+<div class="paragraph">
+<p>When the total calorie count of meals today exceeds even the 120% mark, the bar will not show a buffer segment.
+Instead, the meals will occupy the entire width of the bar, remaining proportionate to their calorie counts.
+The budget marks will also move to the appropriate positions, still representing 100% and 120% of the budget.</p>
+</div>
+<div class="paragraph">
+<p><em>Coming in v2.0:</em>
+When a meal&#8217;s bar segment is too small, its dish name will be hidden.
+Information on the dish still can be viewed as a tooltip, when hovering over the segment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="consumed-meals"><a class="link" href="#consumed-meals">Consumed Meals</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/consumed_pane.png" alt="consumed pane">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="suggested-meals"><a class="link" href="#suggested-meals">Suggested Meals</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/suggest_pane.png" alt="suggest pane">
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide, for the <code>set</code> command:</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="setting-calorie-intake-budget-code-set-code"><a class="link" href="#setting-calorie-intake-budget-code-set-code">Setting calorie intake budget: <code>set</code></a></h3>
+<div class="paragraph">
+<p>Set user calorie intake budget for today.<br>
+This will update the calorie bar to show reflect the new amount of calories remaining.
+If in suggestion mode, the suggest meals will also be refreshed depending on the calories remaining as well.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>set <a href="#calories_syntax">CALORIES</a></code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>set 2500</code></p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">_Given below are sections I contributed to the User Guide, about valid inputs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-syntax-notes"><a class="link" href="#command-syntax-notes">Command Syntax Notes</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a id="calorie_syntax"></a> Calorie values are positive integers from 0 to 2 billion, inclusive.</p>
+</li>
+<li>
+<p><a id="mealname_syntax"></a> Dish names must be alphanumeric (<code>[A-Z], [a-z],[0-9]</code>), and at most 30 characters long.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide for the budget bar feature.</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="budget-bar-display"><a class="link" href="#budget-bar-display">Budget Bar display</a></h3>
+<div class="paragraph">
+<p>The budget bar display provides a graphic overview of meals consumed on the current day,
+comparing against the total calorie budget set by the user.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>The budget bar feature is implemented via the <code>BudgetBar</code> class.
+It is a JavaFx UI component, which wraps around <code>MealLog</code> and <code>CalorieBudget</code>.
+<code>MealLog</code> provides an observable list of meals eaten today,
+while <code>CalorieBudget</code> provides the currently set user budget.</p>
+</div>
+<div class="paragraph">
+<p>Using helper code from <code>ObservableUtil</code> and <code>ObservableListUtil</code>,
+we compute several derived properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Total calories consumed</p>
+</li>
+<li>
+<p>Percentage of budget consumed</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From there, we again construct further observable/reactive values representing:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Bar info text color</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Transitions from green to red, when more budget is consumed</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bar info text</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If budget has been set, shows <code>&lt;Total Consumed&gt; / &lt;Budget&gt;</code>.</p>
+</li>
+<li>
+<p>If budget has not been set, only shows <code>&lt;Total Consumed&gt;</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Meal segments</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Each meal is displayed as a proportionally-sized segment in the whole bar.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Position of warning/danger markers</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following object diagram shows the reactive update dependencies.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/BudgetMealUpdate.png" alt="BudgetMealUpdate">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-base-ui-component-to-display-meal-segments"><a class="link" href="#aspect-base-ui-component-to-display-meal-segments">Aspect: Base UI component to display meal segments.</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong>
+Use ControlsFx&#8217;s <code>SegmentedBar</code> class to handle display of bar segments.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No need to reimplement JavaFx <code>setLayout</code> logic</p>
+</li>
+<li>
+<p>Better performance than <code>GridPane</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Dependency on external library</p>
+</li>
+<li>
+<p>Have to create a separate <code>BufferSegment</code> class to represent gap.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong>
+Use JavaFx&#8217;s <code>GridPane</code> to lay out bar segments, and <code>ColumnConstraints</code> to appropriately set column widths.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No external library (other than JavaFx) needed</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Poor performance to due <code>Observable</code> machinery and <code>GridPane</code> layout</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Explanation of choice:
+Simpler implementation and better performance outweighs the cost of using an external library.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:04:52 UTC</div></div></div></body></html>
