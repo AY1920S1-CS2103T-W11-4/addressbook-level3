@@ -10,7 +10,7 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>My team of 4 software engineering student and I were tasked with enhancing a basic command line interface desktop addressbook application(AddressBook – Level 3) for our Software Engineering project. We chose to morph it into a calories tracker management system called CaloFit. This enhanced application provides health-conscious people or those who are aiming for a diet to set their calorie budget for the day or to simply input their meal for the day; a calorie budget tracker that manages the meal that they take; find dishes based on keywords; suggest a meal with the remaining calorie budget; notify the user if the user missed a meal; and get data about their calorie intake progress through a report.</p>
+<p>My team of 3 software engineering student and I were tasked with enhancing a basic command line interface desktop addressbook application(AddressBook – Level 3) for our Software Engineering project. We chose to morph it into a calories tracker management system called CaloFit. This enhanced application provides health-conscious people or those who are aiming for a diet to set their calorie budget for the day or to simply input their meal for the day; a calorie budget tracker that manages the meal that they take; find dishes based on keywords; suggest a meal with the remaining calorie budget; notify the user if the user missed a meal; and get data about their calorie intake progress through a report.</p>
 </div>
 <div class="paragraph">
 <p>CaloFit is a desktop application for tracking the calories that the user has taken from his or her meals over the course of using the application.<br>
@@ -195,7 +195,7 @@ This feature cannot be disabled and will start once the application starts.<br><
 <td class="content">
 The first meal will always be breakfast, hence no matter at which timing, if the first meal is not consumed, it will always notify the user as breakfast missed.<br>
 If lunch have not been consumed after 8pm, notification will change and notify user that they have not consumed their dinner instead of lunch, as consuming two meals at once is not healthy.<br>
-Notification of dinner will notify the user till 11.59pm, then it will be counted as breakfast.
+Notification of dinner will notify the user till 11.59pm, after which it will be counted as breakfast.
 </td>
 </tr>
 </table>
@@ -222,7 +222,7 @@ Notification will be prompted:<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Meals that will be counted:
+Meals that will be counted:<br>
 - As breakfast - anytime<br>
 - As lunch - after 11am<br>
 - As dinner - after 4pm<br>
@@ -487,7 +487,7 @@ Notification will be prompted:<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Meals that will be counted:
+Meals that will be counted:<br>
 - As breakfast - anytime<br>
 - As lunch - after 11am<br>
 - As dinner - after 4pm<br>
@@ -611,7 +611,7 @@ Do not launch the application till instructed.
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Test case: Set system time to anytime after 10am, clean launch the application, and leave it for as long as the user want to test.
+<p>Test case: Set system time to anytime after 10am, clean launch the application, and leave it for as long as the user want to test.<br>
 Expected: When the application first launch, a notification will be prompted. Followed by every 10 minutes for as long as the application is running.</p>
 </li>
 </ol>
@@ -622,7 +622,7 @@ Expected: When the application first launch, a notification will be prompted. Fo
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Test case: set the system time to 8am, clean launch the application, <code>add n/cereal c/300</code>, set the system time to 3pm, leave it for as long as the user wants to test.
+<p>Test case: set the system time to 8am, clean launch the application, <code>add n/cereal c/300</code>, set the system time to 3pm, leave it for as long as the user wants to test.<br>
 Expected: A notification indicating that lunch have been missed would be prompted every 10 minutes.</p>
 </li>
 </ol>
@@ -633,7 +633,7 @@ Expected: A notification indicating that lunch have been missed would be prompte
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Test case: set the system time to 8am, clean launch the application, <code>add n/cereal c/300</code>, set the system time to 9pm, leave it for as long as the user wants to test.
+<p>Test case: set the system time to 8am, clean launch the application, <code>add n/cereal c/300</code>, set the system time to 9pm, leave it for as long as the user wants to test.<br>
 Expected: A notification indicating that dinner have been missed would be prompted every 10 minutes.</p>
 </li>
 </ol>
@@ -643,4 +643,4 @@ Expected: A notification indicating that dinner have been missed would be prompt
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:07:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:20:37 UTC</div></div></div></body></html>
