@@ -223,7 +223,7 @@ The following class plays an important role at the architecture level:</p>
 <p>The <strong><em>UI</em></strong> consists of a <strong><em>MainWindow</em></strong> that is made up of parts e.g.<strong><em>CommandBox</em></strong>, <strong><em>ResultDisplay</em></strong>, <strong><em>DishListPanel</em></strong>, <strong><em>StatusBarFooter</em></strong> etc. All these parts, including the <strong><em>MainWindow</em></strong>, inherit from the abstract <strong><em>UiPart</em></strong> class.<br></p>
 </div>
 <div class="paragraph">
-<p>The <mark>UI</mark> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <strong>.fxml</strong> files that are in the <strong>src/main/resources/view</strong> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/calofit/ui/MainWindow.java"><mark>MainWindow</mark></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/resources/view/MainWindow.fxml"><mark>MainWindow.fxml</mark></a></p>
+<p>The <strong><em>UI</em></strong> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <strong>.fxml</strong> files that are in the <strong>src/main/resources/view</strong> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/calofit/ui/MainWindow.java"><strong><em>MainWindow</em></strong></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/resources/view/MainWindow.fxml"><strong><em>MainWindow.fxml</em></strong></a>.</p>
 </div>
 <div class="paragraph">
 <p>The <strong><em>UI</em></strong> component,</p>
@@ -307,7 +307,7 @@ The lifeline for <strong><em>DeleteCommandParser</em></strong> should end at the
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/calofit/model/Model.java"><mark>Model.java</mark></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/calofit/model/Model.java"><strong><em>Model.java</em></strong></a></p>
 </div>
 <div class="paragraph">
 <p>The <strong><em>Model</em></strong>,</p>
@@ -315,24 +315,24 @@ The lifeline for <strong><em>DeleteCommandParser</em></strong> should end at the
 <div class="ulist">
 <ul>
 <li>
-<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+<p>stores a <strong><em>UserPref</em></strong> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the DishDatabase data, MealLog data and CalorieBudget data.</p>
+<p>stores the <strong><em>DishDatabase</em></strong> data, <strong><em>MealLog</em></strong> data and <strong><em>CalorieBudget</em></strong> data.</p>
 </li>
 <li>
-<p>exposes many unmodifiable properties that can be 'observed' by the UI component</p>
+<p>exposes many unmodifiable properties that can be 'observed' by the <strong><em>UI</em></strong> component</p>
 <div class="ulist">
 <ul>
 <li>
-<p>List of today meals (<code>ObservableList&lt;Meal&gt;</code>)</p>
+<p>List of today meals (<strong><em>ObservableList&lt;Meal&gt;</em></strong>)</p>
 </li>
 <li>
-<p>List of suggested/filtered dishes (<code>ObservableList&lt;Dish&gt;</code>)</p>
+<p>List of suggested/filtered dishes (<strong><em>ObservableList&lt;Dish&gt;</em></strong>)</p>
 </li>
 <li>
-<p>Current calorie budget (<code>CalorieBudget</code>)
-The UI components can be bound to this list, so that the UI automatically updates when the data in the list changes.</p>
+<p>Current calorie budget (<strong><em>CalorieBudget</em></strong>)
+The <strong><em>UI</em></strong> components can be bound to this list, so that the <strong><em>UI</em></strong> automatically updates when the data in the list changes.</p>
 </li>
 </ul>
 </div>
@@ -343,10 +343,7 @@ The UI components can be bound to this list, so that the UI automatically update
 </ul>
 </div>
 <div class="paragraph">
-<p>This design allows many parts of CaloFit to be created without the fear of conflict with other classes. This is due to the <mark>Model</mark> interface acting as a Facade class that manages the interactions between the components that makeup CaloFit.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span></p>
+<p>This design allows many parts of CaloFit to be created without the fear of conflict with other classes. This is due to the <strong><em>Model</em></strong> interface acting as a Facade class that manages the interactions between the components that makeup CaloFit.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2126,4 +2123,4 @@ As the above test case requires a change in system time, do allow 2 minutes for 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:46:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:48:26 UTC</div></div></div></body></html>
