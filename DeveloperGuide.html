@@ -9,31 +9,32 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#setting-up">1. Setting up</a></li>
-<li><a href="#design">2. Design</a>
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#setting-up">2. Setting up</a></li>
+<li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
-<li><a href="#Design-Architecture">2.1. Architecture</a></li>
-<li><a href="#Design-Ui">2.2. UI component</a></li>
-<li><a href="#Design-Logic">2.3. Logic component</a></li>
-<li><a href="#Design-Model">2.4. Model component</a></li>
-<li><a href="#Design-Storage">2.5. Storage component</a></li>
-<li><a href="#Design-Commons">2.6. Common classes</a></li>
+<li><a href="#Design-Architecture">3.1. Architecture</a></li>
+<li><a href="#Design-Ui">3.2. UI component</a></li>
+<li><a href="#Design-Logic">3.3. Logic component</a></li>
+<li><a href="#Design-Model">3.4. Model component</a></li>
+<li><a href="#Design-Storage">3.5. Storage component</a></li>
+<li><a href="#Design-Commons">3.6. Common classes</a></li>
 </ul>
 </li>
-<li><a href="#implementation">3. Implementation</a>
+<li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#add-feature">3.1. Add feature</a></li>
-<li><a href="#delete-feature">3.2. Delete feature</a></li>
-<li><a href="#budget-bar-display">3.3. Budget Bar display</a></li>
-<li><a href="#assistance-features">3.4. Assistance features</a></li>
-<li><a href="#report-feature">3.5. Report feature</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#add-feature">4.1. Add feature</a></li>
+<li><a href="#delete-feature">4.2. Delete feature</a></li>
+<li><a href="#budget-bar-display">4.3. Budget Bar display</a></li>
+<li><a href="#assistance-features">4.4. Assistance features</a></li>
+<li><a href="#report-feature">4.5. Report feature</a></li>
+<li><a href="#logging">4.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.7. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#documentation">4. Documentation</a></li>
-<li><a href="#testing">5. Testing</a></li>
-<li><a href="#dev-ops">6. Dev Ops</a></li>
+<li><a href="#documentation">5. Documentation</a></li>
+<li><a href="#testing">6. Testing</a></li>
+<li><a href="#dev-ops">7. Dev Ops</a></li>
 <li><a href="#product-scope">Appendix A: Product Scope</a>
 <ul class="sectlevel2">
 <li><a href="#target-user-profile">A.1. Target User Profile</a></li>
@@ -60,7 +61,24 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up"><a class="link" href="#setting-up">1. Setting up</a></h2>
+<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Get Healthy with CaloFit!</strong><br></p>
+</div>
+<div class="paragraph">
+<p>CaloFit is a calorie tracker application written in Java. It provides a simple, fast, and easily-understood platform for users to manage their meals, find meal suggestions, and track their progress by setting their own calorie budget.<br></p>
+</div>
+<div class="paragraph">
+<p>This guide provides information that will not only help you understand how CaloFit works, but also help you expand or modify its features based on what the user wants to track.<br></p>
+</div>
+<div class="paragraph">
+<p>We are a team of 4 Computer Science students from the National University of Singapore(NUS), and hope that this guide has been helpful for you. In the case of any queries or bugs, feel free to contact us by following the instructions [<a href="https://github.com/AY1920S1-CS2103T-W11-4/main/blob/master/docs/ContactUs.adoc">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="SettingUp.html">here</a>.</p>
@@ -68,10 +86,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="design"><a class="link" href="#design">2. Design</a></h2>
+<h2 id="design"><a class="link" href="#design">3. Design</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">2.1. Architecture</a></h3>
+<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ArchitectureDiagram.png" alt="ArchitectureDiagram">
@@ -95,7 +113,7 @@ Refer to the <a href="UsingPlantUml.html">Using PlantUML guide</a> to learn how 
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><mark>Main</mark> has two classes called <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/Main.java"><mark>Main</mark></a> and <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/MainApp.java"><mark>MainApp</mark></a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -114,7 +132,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
+<p><mark>LogsCenter</mark> : Used by many classes to write log messages to the App&#8217;s log file.</p>
 </li>
 </ul>
 </div>
@@ -124,16 +142,16 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: The UI of the App.</p>
+<p><a href="#Design-Ui"><strong><mark>UI</mark></strong></a>: The UI of the App.</p>
 </li>
 <li>
-<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The command executor.</p>
+<p><a href="#Design-Logic"><strong><mark>Logic</mark></strong></a>: The command executor.</p>
 </li>
 <li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory.</p>
+<p><a href="#Design-Model"><strong><mark>Model</mark></strong></a>: Holds the data of the App in-memory.</p>
 </li>
 <li>
-<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: Reads data from, and writes data to, the hard disk.</p>
+<p><a href="#Design-Storage"><strong><mark>Storage</mark></strong></a>: Reads data from, and writes data to, the hard disk.</p>
 </li>
 </ul>
 </div>
@@ -143,15 +161,18 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</p>
+<p>Defines its <em>API</em> in an <mark>interface</mark> with the same name as the Component.</p>
 </li>
 <li>
-<p>Exposes its functionality using a <code>{Component Name}Manager</code> class.</p>
+<p>Exposes its functionality using a <mark>{Component Name}Manager</mark> class.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+<p>This architecture system allows for different components of CaloFit to be implemented separately without conflict. Any interaction between the components is done through the <mark>Model</mark> interface to avoid exposing unnecessary details of each component.</p>
+</div>
+<div class="paragraph">
+<p>For example, the <mark>Logic</mark> component (see the class diagram given below) defines it&#8217;s API in the <mark>Logic.java</mark> interface and exposes its functionality using the <mark>LogicManager.java</mark> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -174,7 +195,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram">
@@ -185,27 +206,30 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>DishListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The <mark>UI</mark> consists of a <mark>MainWindow</mark> that is made up of parts e.g.<mark>CommandBox</mark>, <mark>ResultDisplay</mark>, <mark>DishListPanel</mark>, <mark>StatusBarFooter</mark> etc. All these parts, including the <mark>MainWindow</mark>, inherit from the abstract <mark>UiPart</mark> class.<br></p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <mark>UI</mark> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <strong>.fxml</strong> files that are in the <strong>src/main/resources/view</strong> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/ui/MainWindow.java"><mark>MainWindow</mark></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/resources/view/MainWindow.fxml"><mark>MainWindow.fxml</mark></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component,</p>
+<p>The <mark>UI</mark> component,</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
+<p>Executes user commands using the <mark>Logic</mark> component.</p>
 </li>
 <li>
-<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
+<p>Listens for changes to <mark>Model</mark> data so that the UI can be updated with the modified data.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>This design is similiar to the Architectural design of CaloFit, whereby different <mark>UiParts</mark> are encapsulated in the <mark>MainWindow</mark> java controller class. This allows the <mark>Logic</mark> to minimise interaction with the <mark>UI</mark>, since the <mark>MainWindow</mark> manages the changes to any <mark>UiPart</mark> classes that result from the execution in the <mark>Logic</mark> component.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic component</a></h3>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.3. Logic component</a></h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
@@ -214,29 +238,32 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/logic/Logic.java"><mark>Logic.java</mark></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>CommandParser</code> class to parse the user command.</p>
+<p><mark>Logic</mark> uses the <mark>CommandParser</mark> class to parse the user command.</p>
 </li>
 <li>
-<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+<p>This results in a <mark>Command</mark> object which is executed by the <mark>LogicManager</mark>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a meal).</p>
+<p>The command execution can affect the <mark>Model</mark> (e.g. adding a meal).</p>
 </li>
 <li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+<p>The result of the command execution is encapsulated as a <mark>CommandResult</mark> object which is passed back to the <mark>Ui</mark>.</p>
 </li>
 <li>
-<p>In addition, the <code>CommandResult</code> object can also instruct the <code>Ui</code> to perform certain actions, such as displaying help to the user.</p>
+<p>In addition, the <mark>CommandResult</mark> object can also instruct the <mark>Ui</mark> to perform certain actions, such as displaying help to the user.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>This design allows the <mark>Logic</mark> component to maintain the Single Responsibility of processing the <mark>Command</mark> and returning the <mark>CommandResult</mark>. The <mark>UI</mark> displays any feedback to the user based on the <mark>CommnadResult</mark> object, without the need for the <mark>Logic</mark> to invoke any methods in the <mark>UI</mark> directly.</p>
+</div>
+<div class="paragraph">
+<p>Given below is the Sequence Diagram for interactions within the <mark>Logic</mark> component for the <mark><em>Logic#execute("delete 1")</em></mark> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -251,14 +278,14 @@ The following class plays an important role at the architecture level:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The lifeline for <code>DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The lifeline for <mark>DeleteCommandParser</mark> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
+<h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
@@ -266,26 +293,29 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/model/Model.java"><mark>Model.java</mark></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code>,</p>
+<p>The <mark>Model</mark>,</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+<p>stores a <mark>UserPref</mark> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the DishDatabase data and MealLog data.</p>
+<p>stores the <mark>DishDatabase</mark> data and <mark>MealLog</mark> data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Meal&gt;</code> and <code>ObservableList&lt;Dish&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <mark>ObservableList&lt;Meal&gt;</mark> and <mark>ObservableList&lt;Dish&gt;</mark> that can be 'observed' e.g. the <mark>UI</mark> can be bound to this list so that it automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>This design allows many parts of CaloFit to be created without the fear of conflict with other classes. This is due to the <mark>Model</mark> interface acting as a Facade class that manages the interactions between the components that makeup CaloFit.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -294,7 +324,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>ModelManager</code>, which <code>Dish</code> can reference. This would allow <code>ModelManager</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Dish</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+As a more OOP model, we can store a <mark>Tag</mark> list in <mark>ModelManager</mark>, which <mark>Dish</mark> can reference. This would allow <mark>ModelManager</mark> to only require one <mark>Tag</mark> object per unique <mark>Tag</mark>, instead of each <mark>Dish</mark> needing their own <mark>Tag</mark> object. An example of how such a model may look like is given below.<br>
 <br>
 <span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
 </td>
@@ -303,7 +333,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>ModelManager<
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
@@ -311,40 +341,46 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>ModelManager<
 <div class="title">Figure 8. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-W11-4/main/src/main/java/seedu/address/storage/Storage.java"><mark>Storage.java</mark></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component,</p>
+<p>The <mark>Storage</mark> component,</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+<p>can save <mark>UserPref</mark> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the DishDatabase data in json format and read it back.</p>
+<p>can save the <mark>DishDatabase</mark> data in json format and read it back.</p>
+</li>
+<li>
+<p>can save the <mark>MealLog</mark> data in json format and read it back.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>This design allows the users to save their <mark>MealLog</mark> and <mark>DishDatabase</mark> in a directory of their choice that is specified by the <mark>Path</mark> in the <mark>UserPrefs</mark> object.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">3.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.calofit.commons</code> package.</p>
+<p>Classes used by multiple components are in the <strong>seedu.calofit.commons</strong> package.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<h2 id="implementation"><a class="link" href="#implementation">4. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="add-feature"><a class="link" href="#add-feature">3.1. Add feature</a></h3>
+<h3 id="add-feature"><a class="link" href="#add-feature">4.1. Add feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">4.1.1. Implementation</a></h4>
 <div class="sect4">
 <h5 id="addition-though-flags-e-g-add-n-chicken-c-200-t-dry"><a class="link" href="#addition-though-flags-e-g-add-n-chicken-c-200-t-dry">Addition though flags (e.g add n/Chicken c/200 t/dry)</a></h5>
 <div class="paragraph">
@@ -484,7 +520,7 @@ meals are first added to separate a <code>toBeAddedMealList</code> and once all 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">3.1.2. Design Consideration</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">4.1.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-what-is-considered-the-same-meal"><a class="link" href="#aspect-what-is-considered-the-same-meal">Aspect: What is considered the same meal</a></h5>
 <div class="ulist">
@@ -539,7 +575,7 @@ with alternative 1.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-data-structure-when-storing-in-meals-in-meal-log"><a class="link" href="#aspect-data-structure-when-storing-in-meals-in-meal-log">3.1.3. Aspect: Data structure when storing in meals in meal log</a></h4>
+<h4 id="aspect-data-structure-when-storing-in-meals-in-meal-log"><a class="link" href="#aspect-data-structure-when-storing-in-meals-in-meal-log">4.1.3. Aspect: Data structure when storing in meals in meal log</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -580,9 +616,9 @@ an array list is still used.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-feature"><a class="link" href="#delete-feature">3.2. Delete feature</a></h3>
+<h3 id="delete-feature"><a class="link" href="#delete-feature">4.2. Delete feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">4.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>delete</code> feature is implemented through the <code>DeleteCommand</code> class that extends the abstract <code>Command</code> class.
 It interacts with other objects through the <code>Model</code> interface to manipulate the meal log and remove meals.</p>
@@ -616,7 +652,7 @@ remove the respective meal from the meal log.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.2.2. Design Consideration</a></h4>
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">4.2.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-is-the-meal-removed"><a class="link" href="#aspect-how-is-the-meal-removed">Aspect: How is the meal removed</a></h5>
 <div class="ulist">
@@ -660,13 +696,13 @@ Hence on average, the most meals to be deleted is 4. Thus the sorting time would
 </div>
 </div>
 <div class="sect2">
-<h3 id="budget-bar-display"><a class="link" href="#budget-bar-display">3.3. Budget Bar display</a></h3>
+<h3 id="budget-bar-display"><a class="link" href="#budget-bar-display">4.3. Budget Bar display</a></h3>
 <div class="paragraph">
 <p>The budget bar display provides a graphic overview of meals consumed on the current day,
 comparing against the total calorie budget set by the user.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">4.3.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The budget bar feature is implemented via the <code>BudgetBar</code> class.
 It is a JavaFx UI component, which wraps around <code>MealLog</code> and <code>CalorieBudget</code>.
@@ -740,7 +776,7 @@ we compute several derived properties:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.3.2. Design Consideration</a></h4>
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">4.3.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-base-ui-component-to-display-meal-segments"><a class="link" href="#aspect-base-ui-component-to-display-meal-segments">Aspect: Base UI component to display meal segments.</a></h5>
 <div class="ulist">
@@ -817,9 +853,9 @@ Simpler implementation and better performance outweighs the cost of using an ext
 </div>
 </div>
 <div class="sect2">
-<h3 id="assistance-features"><a class="link" href="#assistance-features">3.4. Assistance features</a></h3>
+<h3 id="assistance-features"><a class="link" href="#assistance-features">4.4. Assistance features</a></h3>
 <div class="sect3">
-<h4 id="find-feature"><a class="link" href="#find-feature">3.4.1. Find feature</a></h4>
+<h4 id="find-feature"><a class="link" href="#find-feature">4.4.1. Find feature</a></h4>
 <div class="paragraph">
 <p>The find feature displays the result of the searched dish on the right pane to the user.</p>
 </div>
@@ -936,7 +972,7 @@ If the DishDatabase is empty, nothing will be display.
 </div>
 </div>
 <div class="sect3">
-<h4 id="suggest-feature"><a class="link" href="#suggest-feature">3.4.2. Suggest feature</a></h4>
+<h4 id="suggest-feature"><a class="link" href="#suggest-feature">4.4.2. Suggest feature</a></h4>
 <div class="paragraph">
 <p>The suggest feature displays the suggested automatically to the user accordingly to the remaining calorie budget.</p>
 </div>
@@ -1066,7 +1102,7 @@ If the DishDatabase is empty, or the daily calorie budget have exceeded the set 
 </div>
 </div>
 <div class="sect3">
-<h4 id="notification-feature"><a class="link" href="#notification-feature">3.4.3. Notification feature</a></h4>
+<h4 id="notification-feature"><a class="link" href="#notification-feature">4.4.3. Notification feature</a></h4>
 <div class="paragraph">
 <p>The notification feature prompts the user with new window if a meal had been missed.</p>
 </div>
@@ -1200,9 +1236,9 @@ The application will immediately check once, when the application is launched, f
 </div>
 </div>
 <div class="sect2">
-<h3 id="report-feature"><a class="link" href="#report-feature">3.5. Report feature</a></h3>
+<h3 id="report-feature"><a class="link" href="#report-feature">4.5. Report feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-8"><a class="link" href="#implementation-8">3.5.1. Implementation</a></h4>
+<h4 id="implementation-8"><a class="link" href="#implementation-8">4.5.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The Report feature is implemented through a <mark>ReportCommand</mark> that extends from the abstract <mark>Command</mark> class.<br>
 It returns a <mark>CommandResult</mark> object that has the boolean "isReport" set to True when <mark><em>ReportCommand#execute(Model)</em></mark> is called.<br>
@@ -1337,7 +1373,7 @@ Hence, only showReport is set to true to indicate that a <mark>ReportWindow</mar
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-when-the-mark-statistics-mark-object-is-created"><a class="link" href="#aspect-when-the-mark-statistics-mark-object-is-created">Aspect: When the <mark>Statistics</mark> object is created.</a></h5>
 <div class="ulist">
@@ -1413,14 +1449,14 @@ Hence, only showReport is set to true to indicate that a <mark>ReportWindow</mar
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1451,7 +1487,7 @@ Hence, only showReport is set to true to indicate that a <mark>ReportWindow</mar
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1459,7 +1495,7 @@ Hence, only showReport is set to true to indicate that a <mark>ReportWindow</mar
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Documentation.html">here</a>.</p>
@@ -1467,7 +1503,7 @@ Hence, only showReport is set to true to indicate that a <mark>ReportWindow</mar
 </div>
 </div>
 <div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
+<h2 id="testing"><a class="link" href="#testing">6. Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Testing.html">here</a>.</p>
@@ -1475,7 +1511,7 @@ Hence, only showReport is set to true to indicate that a <mark>ReportWindow</mar
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="DevOps.html">here</a>.</p>
@@ -1935,4 +1971,4 @@ As the above test case requires a change in system time, do allow 2 minutes for 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 07:26:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 07:27:01 UTC</div></div></div></body></html>
