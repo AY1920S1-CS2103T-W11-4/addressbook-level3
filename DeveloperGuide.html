@@ -53,7 +53,7 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#generating-the-report">G.3. Generating the report</a></li>
+<li><a href="#testing-the-generation-of-the-report">G.3. Testing the generation of the report</a></li>
 </ul>
 </li>
 </ul>
@@ -1204,16 +1204,16 @@ The application will immediately check once, when the application is launched, f
 <div class="sect3">
 <h4 id="implementation-8"><a class="link" href="#implementation-8">3.5.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The Report feature is implemented through a <code>ReportCommand</code> that extends from the abstract <code>Command</code> class.<br>
-It returns a <code>CommandResult</code> object that has the boolean "isReport" set to True when <code>ReportCommand#execute(Model)</code> is called.<br>
-The <code>MainWindow</code> Ui component will check the <code>CommandResult</code> for the "isReport" boolean and create a new <code>ReportWindow</code> through the <code>MainWindow#handleReport()</code> method.<br>
-The <code>ReportWindow</code> object takes in a <code>Statistics</code> object that is created by calling <code>Logic#getStatistics()</code> which subsequently calls <code>Model#getStatistics()</code>. The <code>Model</code> then returns the <code>Statistics</code> object that is created based on the <code>CalorieBudget</code> and <code>MealLog</code> in the <code>Model</code>.<br>
-Additionally, the following operations are implemented in <code>Statistics</code>:</p>
+<p>The Report feature is implemented through a <mark>ReportCommand</mark> that extends from the abstract <mark>Command</mark> class.<br>
+It returns a <mark>CommandResult</mark> object that has the boolean "isReport" set to True when <mark><em>ReportCommand#execute(Model)</em></mark> is called.<br>
+The <mark>MainWindow</mark> Ui component will check the <mark>CommandResult</mark> for the "isReport" boolean and create a new <mark>ReportWindow</mark> through the <mark><em>MainWindow#handleReport()</em></mark> method.<br>
+The <mark>ReportWindow</mark> object takes in a <mark>Statistics</mark> object that is created by calling <mark><em>Logic#getStatistics()</em></mark> which subsequently calls <mark><em>Model#getStatistics()</em></mark>. The <mark>Model</mark> then returns the <mark>Statistics</mark> object that is created based on the <mark>CalorieBudget</mark> and <mark>MealLog</mark> in the <mark>Model</mark>.<br>
+Additionally, the following operations are implemented in <mark>Statistics</mark>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Statistics#generateStatistics(ObservableList&lt;Meal&gt;, CalorieBudget)</code>&#8201;&#8212;&#8201;gets the statistics of the current object. Maximum, Minimum and Average calorie intake per day of the current month are calculated internally in this method.</p>
+<p><mark><em>Statistics#generateStatistics(ObservableList&lt;Meal&gt;, CalorieBudget)</em></mark>&#8201;&#8212;&#8201;gets the statistics of the current object. Maximum, Minimum and Average calorie intake per day of the current month are calculated internally in this method.</p>
 </li>
 </ul>
 </div>
@@ -1224,8 +1224,8 @@ Additionally, the following operations are implemented in <code>Statistics</code
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-While the above method takes in an <code>ObservableList&lt;Meal&gt;</code> instead of a <code>MealLog</code>, the list is generated from the <code>MealLog</code> and passed as the argument to avoid unnecessary interaction between the <code>MealLog</code> and <code>Statistics</code> classes.<br>
-Therefore, even though <code>MealLog</code> is not taken in as a parameter, <code>Statistics</code> still depeneds on <code>MealLog</code> to get the data for generating the report.
+While the above method takes in an <mark>ObservableList&lt;Meal&gt;</mark> instead of a <mark>MealLog</mark>, the list is generated from the <mark>MealLog</mark> and passed as the argument to avoid unnecessary interaction between the <mark>MealLog</mark> and <mark>Statistics</mark> classes.<br>
+Therefore, even though <mark>MealLog</mark> is not taken in as a parameter, <mark>Statistics</mark> still depeneds on <mark>MealLog</mark> to get the data for generating the report.
 </td>
 </tr>
 </table>
@@ -1233,21 +1233,21 @@ Therefore, even though <code>MealLog</code> is not taken in as a parameter, <cod
 <div class="ulist">
 <ul>
 <li>
-<p><code>Statistics#getCalorieExceedCount(CalorieBudget, ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the number of days where calorie intake exceeded the calorie budget for that day.</p>
+<p><mark><em>Statistics#getCalorieExceedCount(CalorieBudget, ObservableList&lt;Meal&gt;)</em></mark>&#8201;&#8212;&#8201;gets the number of days where calorie intake exceeded the calorie budget for that day.</p>
 </li>
 <li>
-<p><code>Statistics#getMostConsumedDishes(ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the list of dishes which are consumed the most in the current month.</p>
+<p><mark><em>Statistics#getMostConsumedDishes(ObservableList&lt;Meal&gt;)</em></mark>&#8201;&#8212;&#8201;gets the list of dishes which are consumed the most in the current month.</p>
 </li>
 <li>
-<p><code>Statistics#getFoodChartSeries(ObservableList&lt;Meal&gt;)</code>&#8201;&#8212;&#8201;gets the series containing the dishes eaten this month and their respective quantities.</p>
+<p><mark><em>Statistics#getFoodChartSeries(ObservableList&lt;Meal&gt;)</em></mark>&#8201;&#8212;&#8201;gets the series containing the dishes eaten this month and their respective quantities.</p>
 </li>
 <li>
-<p><code>Statistics#getCalorieChartSeries(ObservableList&lt;Meal)</code>&#8201;&#8212;&#8201;gets the series that representing the amount of calories taken by the user over the past month.</p>
+<p><mark><em>Statistics#getCalorieChartSeries(ObservableList&lt;Meal)</em></mark>&#8201;&#8212;&#8201;gets the series that represents the amount of calories taken by the user over the past month.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Given below is a Class Diagram that shows how the ReportCommand interacts with other components of CaloFit.</p>
+<p>Given below is Figure 3.5.1.1 which is a Class Diagram that shows how the <mark>ReportCommand</mark> interacts with other components of CaloFit.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1255,10 +1255,14 @@ Therefore, even though <code>MealLog</code> is not taken in as a parameter, <cod
 </div>
 </div>
 <div class="paragraph">
+<div class="title">Figure 3.5.1.1: Class Diagram showing interaction of <mark>ReportCommand</mark>.</div>
+<p><br></p>
+</div>
+<div class="paragraph">
 <p>Given below is an example usage scenario and how the Report feature behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user starts up CaloFit for the first time. The <code>ModelManager</code> will contain a <code>MealLog</code> that has an empty list.</p>
+<p>Step 1. The user starts up CaloFit for the first time. The <mark>ModelManager</mark> will contain a <mark>MealLog</mark> that has an empty list.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1267,19 +1271,19 @@ Therefore, even though <code>MealLog</code> is not taken in as a parameter, <cod
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the user enters "report" in the Command Line Input with a <code>MealLog</code> that has no <code>Meal</code> entered this month, a <code>CommandException</code> will be thrown since there are no <code>Meal</code> to gather statistics pertaining to this month.
+If the user enters "report" in the Command Line Input with a <mark>MealLog</mark> that has no <mark>Meal</mark> entered this month, a <mark>CommandException</mark> will be thrown since there are no <mark>Meal</mark> to gather statistics pertaining to this month.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 2. The user has added a <code>Meal</code> into the <code>MealLog</code> through the <code>add</code> feature.</p>
+<p>Step 2. The user has added a <mark>Meal</mark> into the <mark>MealLog</mark> through the <code>add</code> feature.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. The user enters "report" in the Command Line Input to generate the report of CaloFit. The <code>ReportCommand</code> created will return a <code>CommandResult</code> object with "isReport" set to True. When the <code>MainWindow</code> checks this boolean, it calls <code>MainWindow#handleReport()</code> that creates the <code>ReportWindow</code>.</p>
+<p>Step 3. The user enters "report" in the Command Line Input to generate the report of CaloFit. The <mark>ReportCommand</mark> created will return a <mark>CommandResult</mark> object with "isReport" set to True. When the <mark>MainWindow</mark> checks this boolean, it calls <mark><em>MainWindow#handleReport()</em></mark> that creates the <mark>ReportWindow</mark>.</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarises the above usage scenario.</p>
+<p>The following activity diagram in Figure 3.5.1.2 summarises the above usage scenario.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1287,12 +1291,20 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 </div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the "report" command works.</p>
+<div class="title">Figure 3.5.1.2: Activity Diagram showing execution of "report" as the user input.</div>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram in Figure 3.5.1.3 shows how the "report" command works.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ReportCommand.png" alt="ReportCommand">
 </div>
+</div>
+<div class="paragraph">
+<div class="title">Figure 3.5.1.3: Sequence diagram of "report" command execution.</div>
+<p><br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1301,29 +1313,33 @@ If the user enters "report" in the Command Line Input with a <code>MealLog</code
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The parameters of the constructor of <code>CommandResult</code> in the above diagram are as follows, from left to right:<br>
+The parameters of the constructor of <mark>CommandResult</mark> in the above diagram are as follows, from left to right:<br>
 String message&#8201;&#8212;&#8201;the message to be displayed to the user in the GUI.<br>
-boolean showHelp: indicates if the <code>HelpWindow</code> should be generated.<br>
-boolean showReport: indicates if the <code>ReportWindow</code> should be generated.<br>
+boolean showHelp: indicates if the <mark>HelpWindow</mark> should be generated.<br>
+boolean showReport: indicates if the <mark>ReportWindow</mark> should be generated.<br>
 boolean isExit: indicates if the application should exit along with any other windows that are being shown.<br>
-Hence, only showReport is set to true to indicate that a <code>ReportWindow</code> should be created, while the rest of the booleans are set to false.
+Hence, only showReport is set to true to indicate that a <mark>ReportWindow</mark> should be created, while the rest of the booleans are set to false.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the <code>ReportWindow</code> is generated.</p>
+<p>The following sequence diagram in Figure 3.5.1.4 shows how the <mark>ReportWindow</mark> is generated.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ReportWindow.png" alt="ReportWindow">
 </div>
 </div>
+<div class="paragraph">
+<div class="title">Figure 3.5.1.4: Sequence Diagram showing the generation of the <mark>ReportWindow</mark>.</div>
+<p><br></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-when-the-code-statistics-code-object-is-created"><a class="link" href="#aspect-when-the-code-statistics-code-object-is-created">Aspect: When the <code>Statistics</code> object is created.</a></h5>
+<h5 id="aspect-when-the-mark-statistics-mark-object-is-created"><a class="link" href="#aspect-when-the-mark-statistics-mark-object-is-created">Aspect: When the <mark>Statistics</mark> object is created.</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1340,20 +1356,20 @@ Hence, only showReport is set to true to indicate that a <code>ReportWindow</cod
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Every command creates a new updated <code>Statistics</code> object.</p>
+<p><strong>Alternative 2:</strong> Every command creates a new updated <mark>Statistics</mark> object.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Logging of statistics can be accurate, and statistics are always updated.</p>
 </li>
 <li>
-<p>Cons: Unnecessary as user does not need to see the statistics other than through a "report" command and results in every command having to do more work and interact with the <code>Model</code> more, possibly creating more bugs.</p>
+<p>Cons: Unnecessary as user does not need to see the statistics other than through a "report" command and results in every command having to do more work and interact with the <mark>Model</mark> more, possibly creating more bugs.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Explanation of Choice:</strong> Since the user only needs to see the updated statistics when a "report" command is executed, we only need to generate a new <code>Statistics</code> object with the updated values for that command, hence <strong>Alternative 1</strong> is chosen to avoid adding unnecessary complexity to each command.</p>
+<p><strong>Explanation of Choice:</strong> Since the user only needs to see the updated statistics when a "report" command is executed, we only need to generate a new <mark>Statistics</mark> object with the updated values for that command, hence <strong>Alternative 1</strong> is chosen to avoid adding unnecessary complexity to each command.</p>
 </li>
 </ul>
 </div>
@@ -1363,11 +1379,11 @@ Hence, only showReport is set to true to indicate that a <code>ReportWindow</cod
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Wrap the values in a <code>Statistics</code> object.</p>
+<p><strong>Alternative 1 (current choice):</strong> Wrap the values in a <mark>Statistics</mark> object.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Neater code and easier to understand, since all statistic-related values are stored in the <code>Statistics</code> object and are not implemented in the <code>Model</code>.</p>
+<p>Pros: Neater code and easier to understand, since all statistic-related values are stored in the <mark>Statistics</mark> object and are not implemented in the <mark>Model</mark>.</p>
 </li>
 <li>
 <p>Cons: Additional class to maintain and test for dependencies.</p>
@@ -1376,20 +1392,20 @@ Hence, only showReport is set to true to indicate that a <code>ReportWindow</cod
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Store the values as a list in the <code>Model</code>.</p>
+<p><strong>Alternative 2:</strong> Store the values as a <mark>List</mark> in the <mark>Model</mark>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: The statistics can be updated easily through the <code>Model</code> itself by updating the elements in the list. Accessing the statistics to display is easier as well.</p>
+<p>Pros: The statistics can be updated easily through the <code>Model</code> itself by updating the elements in the <mark>List</mark>. Accessing the statistics to display is easier as well.</p>
 </li>
 <li>
-<p>Cons: Burdens the <code>Model</code> with a responsibility that is largely irrelevant to its current ones, which is to keep track of the Objects that make up the CaloFit model.</p>
+<p>Cons: Burdens the <mark>Model</mark> with a responsibility that is largely irrelevant to its current ones, which is to keep track of the Objects that make up the CaloFit model.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Explanation of Choice:</strong> To try and enforce Single Responsibility Principle as much as possible and avoid adding irrelavant functionality to <code>Model</code>.</p>
+<p><strong>Explanation of Choice:</strong> To try and enforce Single Responsibility Principle as much as possible and avoid adding irrelavant functionality to <mark>Model</mark>.</p>
 </li>
 </ul>
 </div>
@@ -1790,7 +1806,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="generating-the-report"><a class="link" href="#generating-the-report">G.3. Generating the report</a></h3>
+<h3 id="testing-the-generation-of-the-report"><a class="link" href="#testing-the-generation-of-the-report">G.3. Testing the generation of the report</a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1810,15 +1826,15 @@ All test cases assume an empty meal log prior to the inputs. To ensure this, you
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Test case: No meals in input for current month.<br>
+<p>Test case: No meals in input for current month, followed by <code>report</code>.<br>
 Expected: Report is <strong>NOT</strong> generated. An error message will be shown in the result display box of CaloFit.</p>
 </li>
 <li>
-<p>Test case: Any number of meals has been entered for current month.<br>
+<p>Test case: Any number of meals has been entered for current month, followed by <code>report</code>.<br>
 Expected: Report is generated normally.</p>
 </li>
 <li>
-<p>Test case: Any number of meals has been entered for current month and system time is changed to a different month or year.<br>
+<p>Test case: Any number of meals has been entered for current month and system time is changed to a different month or year, followed by <code>report</code><br>
 Expected: Report may initially be wrong as stated in the [<a href="https://github.com/AY1920S1-CS2103T-W11-4/main/blob/master/docs/UserGuide.adoc">Report Feature of our User Guide</a>]. The data in CaloFit will be updated in 2 minutes to fit this change in system time, after which the scenario will be similiar to the previous test case.</p>
 </li>
 </ol>
@@ -1833,7 +1849,7 @@ Expected: Report may initially be wrong as stated in the [<a href="https://githu
 Expected: Number of days calorie intake exceeded budget will be 1.</p>
 </li>
 <li>
-<p>Test case: same as previous, with additional <code>set 1000</code> at the end.<br>
+<p>Test case: <code>add n/carbonara c/689</code>, <code>set 1000</code>, followed by <code>report</code>.<br>
 Expected: Number of days calorie intake exceeded budget will be 0.</p>
 </li>
 </ol>
@@ -1848,7 +1864,7 @@ Expected: Number of days calorie intake exceeded budget will be 0.</p>
 Expected: Carbonara and Beef Stew will be in list.</p>
 </li>
 <li>
-<p>Test case: same as previous, with additional <code>add n/carbonara c/690</code> before <code>report</code>.<br>
+<p>Test case: same as previous, with additional <code>add n/carbonara c/689</code> before <code>report</code>.<br>
 Expected: Only Carbonara will be in the list.</p>
 </li>
 </ol>
@@ -1919,4 +1935,4 @@ As the above test case requires a change in system time, do allow 2 minutes for 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:07:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 04:03:36 UTC</div></div></div></body></html>
