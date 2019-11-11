@@ -43,11 +43,6 @@ project as well as relevant documentations I have added to the user and develope
 using with regards the these enhancements.</p>
 </div>
 <div class="paragraph">
-<p>My role was to design and write the codes for the <code>report</code> feature. The following sections
-illustrate these enhancements in more detail, as well as the relevant documentation I have added to
-the user and developer guides in relation to these enhancements.</p>
-</div>
-<div class="paragraph">
 <p>Note the following symbols and formatting used in this document:</p>
 </div>
 <div class="admonitionblock note">
@@ -78,7 +73,7 @@ and other helpful contributions to the team project</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to track consumed meals</strong>.</p>
+<p><strong>Major enhancement</strong>: added <strong>the ability to track consumed meals and calories</strong>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -89,26 +84,7 @@ and other helpful contributions to the team project</p>
 as well as their calorie intake.</p>
 </li>
 <li>
-<p>Highlights:</p>
-</li>
-<li>
-<p>Credits:</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: added <strong>automatic saving of the meal history of the user as a JavaScript Objection Notation(JSON) file</strong>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: The user&#8217;s meal entries into CaloFit will be saved into a JSON file, allowing the user&#8217;s meal history to be loaded upon starting up CaloFit.</p>
-</li>
-<li>
-<p>Justification: This small feature is crucial as we need to ensure that the user&#8217;s meal log is saved in order to track his or her progress since he or she started using CaloFit.</p>
-</li>
-<li>
-<p>Credits: The methods and structure of converting a Class into a JSON file was taken from the original AddressBook-Level 3 and refactored for the purpose mentioned above.</p>
+<p>Highlights: Adding and deleting multiple meals at one go. Ability to remove specific tags of a meal instead of all tags.</p>
 </li>
 </ul>
 </div>
@@ -180,6 +156,295 @@ feature. They showcase my ability to write documentation targeting end-users.</e
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="meal-tracking"><a class="link" href="#meal-tracking">Meal Tracking</a></h3>
+<div class="sect3">
+<h4 id="adding-a-meal-code-add-code"><a class="link" href="#adding-a-meal-code-add-code">Adding a meal: <code>add</code></a></h4>
+<div class="paragraph">
+<p>Adds a meal that the user ate to be tracked by CaloFit.<br>
+There are 2 formats that can be used:<br></p>
+</div>
+<div class="paragraph">
+<p>Format 1: <code>add n/<a href="#mealname-syntax">MEAL_NAME</a> [c/<a href="#calories-syntax">CALORIES</a>] [t/TAGS]</code><br>
+Inputting calories of the meal is optional.<br>
+If the meal is a dish stored in CaloFit, the calories will be taken from CaloFit. If not, a default value of 700 will be added for you,<br>
+Tags are completely optional and there is no default tag. You could also have more than 1 tag.<br></p>
+</div>
+<div class="paragraph">
+<p>Format 2: <code>add NUMBER_IN_SUGGESTED_MEAL_LIST [NUMBER_IN_SUGGESTED_MEAL_LIST] &#8230;&#8203;</code><br>
+NUMBER_IN_SUGGESTED_MEAL_LIST is the number that corresponds to the meal in suggested list on the right side of the application.
+You can also add multiple meals at one go using the indexes. This can be done by separating the numbers with a space.
+e.g. <code>add 1 2 3</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="#mealname-syntax">MEAL_NAME</a> can only be a maximum of 30 characters to ensure it displays correctly for you.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples usage:<br>
+It is lunchtime and you are about to go have some Mushroom Soup.
+You would like to add the meal into CaloFit to record it down. What do you do?</p>
+</div>
+<div class="paragraph">
+<p>If <code>format 1</code> is your preferred choice, you could do the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type <code>add n/Mushroom Soup</code> into the command bar and press the <code>enter</code> key.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddCommandInitialFormat1.png" alt="AddCommandInitialFormat1">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If calofit has the information for the meal (Mushroom Soup in this case),
+it will grab the relevant information and update the meal log accordingly.
+The meal that is added will be shown in the result window.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddCommandAddedFormat1.png" alt="AddCommandAddedFormat1">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If CaloFit does not have the information, and the information is not provided,
+the default calorie information will be 700 calories</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If <code>format 2</code> is your prefered choice, you could do the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type <code>find mushroom soup</code> into the command bar and press the <code>enter</code> key.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddCommandFind1Command.png" alt="AddCommandFind1Command">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the meal exist in our meal database, it will show up under the suggested
+meals header.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddCommandSearchResult.png" alt="AddCommandSearchResult">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Afterwards, enter the command <code>add 1</code> to the command bar and press the <code>enter</code> key.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddCommandAdd1.png" alt="AddCommandAdd1">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The meal "Mushroom Soup" will then be added to the consumed meals.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddCommandAdd1Success.png" alt="AddCommandAdd1Success">
+</div>
+</div>
+<div class="paragraph">
+<p>Commands below are come other example commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/Spaghetti c/480 t/tasty</code> - Adds a meal named Spaghetti of 480 calories with the tag "tasty".</p>
+</li>
+<li>
+<p><code>add n/Chicken Rice c/500</code> - Adds a meal named Chicken Rice of 500 calories.</p>
+</li>
+<li>
+<p><code>add n/Mushroom Soup</code> - Adds a meal named Mushroom Soup of 700 calories by default.</p>
+</li>
+<li>
+<p><code>add 1</code> - Adds the first meal shown under the suggested meal section.</p>
+</li>
+<li>
+<p><code>add 1 2 3</code> - Adds the first and second meal shown under the suggested meal section.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-previous-meal-entry-code-edit-code"><a class="link" href="#editing-previous-meal-entry-code-edit-code">Editing previous meal entry : <code>edit</code></a></h4>
+<div class="paragraph">
+<p>Edits a meal that the user previously ate today.<br>
+Format: <code>edit MEAL-NUMBER [n/<a href="#mealname-syntax">MEAL-NAME</a>] [c/<a href="#calories-syntax">CALORIES</a>] [tr/TAGSTOREMOVE]</code><br>
+The input of at least 1 field (either NAME, CALORIES, TAGS or TAGSTOREMOVE) is required.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>edit MEAL-NUMBER [n/<a href="#mealname-syntax">MEAL-NAME</a>] [c/<a href="#calories-syntax">CALORIES</a>] [t/TAGS]</code><br>
+The input of at least 1 field (either NAME, <a href="#calories-syntax">CALORIES</a> or TAGS) is required.
+A mix of the different fields is possible as well.</p>
+</div>
+<div class="paragraph">
+<p>Example usages:<br>
+While rushing to type in the meals, you misspelled "Mushroom Soup" as "Mushroom Soop" and
+added 2000 calories instead of the correct 200 calories. What do you do?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type "edit 1 n/Mushroom Soup c/200" into the command bar and press the <code>enter</code> key.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditCommandInitial.png" alt="EditCommandInitial">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The name of the meal will be edited to "Mushroom Soup" and the calories will be edited
+to the correct amount of 200 in the calorie bar.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditCommandSuccess.png" alt="EditCommandSuccess">
+</div>
+</div>
+<div class="paragraph">
+<p>Commands below are come other example commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 n/Wanton Noodle c/1000</code> - Edits the meal at index 1 to name "Wanton Noodle" with calorie 1000.</p>
+</li>
+<li>
+<p><code>edit 2 n/Chicken Rice</code> - Edits the meal at index 2 to name "Chicken Rice" without changing anything else.</p>
+</li>
+<li>
+<p><code>edit 3 c/500</code> - Edits the meal at index 3 to have a calorie count of 500 without changing the other fields.</p>
+</li>
+<li>
+<p><code>edit 4 t/tasty</code> - Adds the tag "tasty" to the existing list of tags for meal at index 4.</p>
+</li>
+<li>
+<p><code>edit 5 tr/tasty</code> - Removes the tag "tasty" if it exists in the list of tags for meal at index 5.</p>
+</li>
+<li>
+<p><code>edit 6 t/</code> - Clears all tags for meal at index 6.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-previous-meal-entry-code-delete-code"><a class="link" href="#deleting-previous-meal-entry-code-delete-code">Deleting previous meal entry : <code>delete</code></a></h4>
+<div class="paragraph">
+<p>Deletes a meal that the user previously ate today.<br>
+The meal will be removed from the consumed meal section<br>
+and the calorie tracking bar.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>delete MEAL_NUMBER [MEAL_NUMBER] &#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Example usage:<br>
+You thought you were going to have Mushroom Soup for lunch when you were queuing.
+So you decided add Mushroom Soup to the meal log using the add command.
+However, while queuing, your boss called you saying that there is an emergency and
+wants you back in the office immediately. You abandon the queue and go back to the office.
+Since you did not consume the meal, you would want to remove it from the meal log.
+What do you do?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type <code>delete 1</code> into the command bar and press the <code>enter</code> key.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteCommandDelete1.png" alt="DeleteCommandDelete1">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When the meal is successfully deleted, a message will appear in the
+result box and the meal will be removed</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteCommandDelete1Success.png" alt="DeleteCommandDelete1Success">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+"1" can be changed to any number in the consumed meal section. However,
+in this example, Mushroom Soup is located at index 1.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Commands below are come other example commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete 1</code> - deletes the first meal in the consumed meal section.</p>
+</li>
+<li>
+<p><code>delete 1 2 3</code> - bulk deleting of meals 1, 2 and 3 in the consumed meal section.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -591,4 +856,4 @@ Hence on average, the most meals to be deleted is 4. Thus the sorting time would
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:33:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:45:29 UTC</div></div></div></body></html>
