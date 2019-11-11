@@ -188,6 +188,14 @@ Information on the dish still can be viewed as a tooltip, when hovering over the
 <img src="images/consumed_pane.png" alt="consumed pane">
 </div>
 </div>
+<div class="paragraph">
+<p>The Consumed Meals pane will display the current meals that were consumed today.
+This pane will automatically updating upon adding, editing or deleting meals.</p>
+</div>
+<div class="paragraph">
+<p>Each meal displays its name and tags, together with its index in the whole list.
+The <code>edit</code>/<code>delete</code> commands can be given indexes of meals from this list, to manipulate them further.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="suggested-meals"><a class="link" href="#suggested-meals">4.4. Suggested Meals</a></h3>
@@ -195,6 +203,18 @@ Information on the dish still can be viewed as a tooltip, when hovering over the
 <div class="content">
 <img src="images/suggest_pane.png" alt="suggest pane">
 </div>
+</div>
+<div class="paragraph">
+<p>At the start of the program, the Suggested Meals pane displays all dishes that fit within the remaining calorie budget.
+As more meals are logged as consumed, it will automatically update and filter out dishes that no longer fit.
+Additionally, it will also track dishes from directly-added meals, for future reuse.</p>
+</div>
+<div class="paragraph">
+<p>It also doubles as the result pane for the <code>find</code> command. To toggle it back to suggestion mode, use the <code>suggest</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Each dish displays its name and tags, together with its index in the whole list.
+The <code>add</code> command can be given the indexes of dishes from the list, to add them as meals today.</p>
 </div>
 </div>
 </div>
@@ -210,10 +230,10 @@ Information on the dish still can be viewed as a tooltip, when hovering over the
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/<a href="#mealname_syntax">MEAL_NAME</a></code>, <code><a href="#mealname_syntax">MEAL_NAME</a></code> is a parameter which can be used as <code>add n/Carbonara</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/<a href="#mealname-syntax">MEAL_NAME</a></code>, <code><a href="#mealname-syntax">MEAL_NAME</a></code> is a parameter which can be used as <code>add n/Carbonara</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>add n/<a href="#mealname_syntax">MEAL_NAME</a> [c/<a href="#calories_syntax">CALORIES</a>]</code> can be used as <code>add n/Carbonara c/430</code> or as <code>add n/Carbonara</code>.</p>
+<p>Items in square brackets are optional e.g <code>add n/<a href="#mealname-syntax">MEAL_NAME</a> [c/<a href="#calories-syntax">CALORIES</a>]</code> can be used as <code>add n/Carbonara c/430</code> or as <code>add n/Carbonara</code>.</p>
 </li>
 </ul>
 </div>
@@ -228,7 +248,7 @@ Information on the dish still can be viewed as a tooltip, when hovering over the
 There are 2 formats that can be used:<br></p>
 </div>
 <div class="paragraph">
-<p>Format 1: <code>add n/<a href="#mealname_syntax">MEAL_NAME</a> [c/<a href="#calories_syntax">CALORIES</a>] [t/TAGS]</code><br>
+<p>Format 1: <code>add n/<a href="#mealname-syntax">MEAL_NAME</a> [c/<a href="#calories-syntax">CALORIES</a>] [t/TAGS]</code><br>
 Inputting calories of the meal is optional.<br>
 If the meal is a dish stored in CaloFit, the calories will be taken from CaloFit. If not, a default value of 700 will be added for you,<br>
 Tags are completely optional and there is no default tag. You could also have more than 1 tag.<br></p>
@@ -246,7 +266,7 @@ e.g. <code>add 1 2 3</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="#mealname_syntax">MEAL_NAME</a> can only be a maximum of 30 characters to ensure it displays correctly for you.
+<a href="#mealname-syntax">MEAL_NAME</a> can only be a maximum of 30 characters to ensure it displays correctly for you.
 </td>
 </tr>
 </table>
@@ -372,12 +392,12 @@ meals header.</p>
 <h4 id="editing-previous-meal-entry-code-edit-code"><a class="link" href="#editing-previous-meal-entry-code-edit-code">5.1.2. Editing previous meal entry : <code>edit</code></a></h4>
 <div class="paragraph">
 <p>Edits a meal that the user previously ate today.<br>
-Format: <code>edit MEAL_NUMBER [n/<a href="#mealname_syntax">MEAL_NAME</a>] [c/<a href="#calories_syntax">CALORIES</a>] [tr/TAGSTOREMOVE]</code><br>
+Format: <code>edit MEAL-NUMBER [n/<a href="#mealname-syntax">MEAL-NAME</a>] [c/<a href="#calories-syntax">CALORIES</a>] [tr/TAGSTOREMOVE]</code><br>
 The input of at least 1 field (either NAME, CALORIES, TAGS or TAGSTOREMOVE) is required.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>edit MEAL_NUMBER [n/<a href="#mealname_syntax">MEAL_NAME</a>] [c/<a href="#calories_syntax">CALORIES</a>] [t/TAGS]</code><br>
-The input of at least 1 field (either NAME, <a href="#calories_syntax">CALORIES</a> or TAGS) is required.
+<p>Format: <code>edit MEAL-NUMBER [n/<a href="#mealname-syntax">MEAL-NAME</a>] [c/<a href="#calories-syntax">CALORIES</a>] [t/TAGS]</code><br>
+The input of at least 1 field (either NAME, <a href="#calories-syntax">CALORIES</a> or TAGS) is required.
 A mix of the different fields is possible as well.</p>
 </div>
 <div class="paragraph">
@@ -700,7 +720,7 @@ This will update the calorie bar to show reflect the new amount of calories rema
 If in suggestion mode, the suggest meals will also be refreshed depending on the calories remaining as well.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>set <a href="#calories_syntax">CALORIES</a></code></p>
+<p>Format: <code>set <a href="#calories-syntax">CALORIES</a></code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -708,7 +728,8 @@ If in suggestion mode, the suggest meals will also be refreshed depending on the
 <div class="ulist">
 <ul>
 <li>
-<p><code>set 2500</code></p>
+<p><code>set 2500</code>
+Sets the calorie budget to 2500 calories.</p>
 </li>
 </ul>
 </div>
@@ -842,7 +863,7 @@ Format: <code>help</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/<a href="#mealname_syntax">MEAL_NAME</a> [c/<a href="#calories_syntax">CALORIES</a>]</code><br>
+<p><strong>Add</strong> <code>add n/<a href="#mealname-syntax">MEAL_NAME</a> [c/<a href="#calories-syntax">CALORIES</a>]</code><br>
 e.g. <code>add n/duck rice c/360</code></p>
 </li>
 <li>
@@ -850,7 +871,7 @@ e.g. <code>add n/duck rice c/360</code></p>
 e.g. <code>add 1</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit MEAL_NUMBER [n/<a href="#mealname_syntax">MEAL_NAME</a>] [c/<a href="#calories_syntax">CALORIES</a>]</code><br>
+<p><strong>Edit</strong> : <code>edit MEAL_NUMBER [n/<a href="#mealname-syntax">MEAL_NAME</a>] [c/<a href="#calories-syntax">CALORIES</a>]</code><br>
 e.g. <code>edit 1 n/duck noodle c/250</code></p>
 </li>
 <li>
@@ -858,7 +879,7 @@ e.g. <code>edit 1 n/duck noodle c/250</code></p>
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Set</strong> : <code>set <a href="#calories_syntax">CALORIES</a></code><br>
+<p><strong>Set</strong> : <code>set <a href="#calories-syntax">CALORIES</a></code><br>
 e.g. <code>set 2600</code></p>
 </li>
 <li>
@@ -887,10 +908,10 @@ e.g. <code>help</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><a id="calories_syntax"></a> Calorie values are positive integers from 0 to 2 billion, inclusive.</p>
+<p><a id="calories-syntax"></a> Calorie values are positive integers from 0 to 2 billion, inclusive.</p>
 </li>
 <li>
-<p><a id="mealname_syntax"></a> Dish names must be alphanumeric (<code>[A-Z], [a-z],[0-9]</code>), and at most 30 characters long.</p>
+<p><a id="mealname-syntax"></a> Dish names must be alphanumeric (<code>[A-Z], [a-z],[0-9]</code>), and at most 30 characters long.</p>
 </li>
 </ul>
 </div>
@@ -926,4 +947,4 @@ Java &#8594; A widely used programming language. Typing "java 11 download" into 
 Tag(s) &#8594; A description that is entirely up to you, but do note that tags can only be alphanumeric.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:08:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:33:58 UTC</div></div></div></body></html>

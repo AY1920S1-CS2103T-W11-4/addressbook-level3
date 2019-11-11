@@ -128,13 +128,28 @@ The [<a href="https://github.com/controlsfx/controlsfx">ControlsFX library</a>] 
 <ul>
 <li>
 <p>In charge of overall software architecture</p>
+</li>
+<li>
+<p>Was responsible for refactoring the whole model from the original AddressBook 3 model,
+into a model suitable for CaloFit.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Refactored original AddressBook model structure, into something closer to our problem domain.</p>
+<p>This involved many bulk and manual rename operations upon the classes, and continuous re-testing to ensure integrity.</p>
 </li>
 <li>
-<p>Provided many low-level code infrastructure to support teammates' high-level features.</p>
+<p>I also added many more reactive properties leveraging JavaBean&#8217;s/JavaFx&#8217;s Observable mechanism.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This allows the UI to be able to track model updates, without incurring a direct dependency from the Model to the UI component.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>I also wrote utility code in the form of <strong><em>ObservableListUtils</em></strong> and <strong><em>ObservableUtils</em></strong> in order to ease implementation
+of chained reactive properties, especially with those involving manipulations of <strong><em>ObservableList</em></strong> s.</p>
 </li>
 </ul>
 </div>
@@ -258,6 +273,14 @@ Information on the dish still can be viewed as a tooltip, when hovering over the
 <img src="../images/consumed_pane.png" alt="consumed pane">
 </div>
 </div>
+<div class="paragraph">
+<p>The Consumed Meals pane will display the current meals that were consumed today.
+This pane will automatically updating upon adding, editing or deleting meals.</p>
+</div>
+<div class="paragraph">
+<p>Each meal displays its name and tags, together with its index in the whole list.
+The <code>edit</code>/<code>delete</code> commands can be given indexes of meals from this list, to manipulate them further.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="suggested-meals"><a class="link" href="#suggested-meals">Suggested Meals</a></h3>
@@ -265,6 +288,18 @@ Information on the dish still can be viewed as a tooltip, when hovering over the
 <div class="content">
 <img src="../images/suggest_pane.png" alt="suggest pane">
 </div>
+</div>
+<div class="paragraph">
+<p>At the start of the program, the Suggested Meals pane displays all dishes that fit within the remaining calorie budget.
+As more meals are logged as consumed, it will automatically update and filter out dishes that no longer fit.
+Additionally, it will also track dishes from directly-added meals, for future reuse.</p>
+</div>
+<div class="paragraph">
+<p>It also doubles as the result pane for the <code>find</code> command. To toggle it back to suggestion mode, use the <code>suggest</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Each dish displays its name and tags, together with its index in the whole list.
+The <code>add</code> command can be given the indexes of dishes from the list, to add them as meals today.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -285,7 +320,7 @@ This will update the calorie bar to show reflect the new amount of calories rema
 If in suggestion mode, the suggest meals will also be refreshed depending on the calories remaining as well.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>set <a href="#calories_syntax">CALORIES</a></code></p>
+<p>Format: <code>set <a href="#calories-syntax">CALORIES</a></code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -293,7 +328,8 @@ If in suggestion mode, the suggest meals will also be refreshed depending on the
 <div class="ulist">
 <ul>
 <li>
-<p><code>set 2500</code></p>
+<p><code>set 2500</code>
+Sets the calorie budget to 2500 calories.</p>
 </li>
 </ul>
 </div>
@@ -316,10 +352,10 @@ If in suggestion mode, the suggest meals will also be refreshed depending on the
 <div class="ulist">
 <ul>
 <li>
-<p><a id="calories_syntax"></a> Calorie values are positive integers from 0 to 2 billion, inclusive.</p>
+<p><a id="calories-syntax"></a> Calorie values are positive integers from 0 to 2 billion, inclusive.</p>
 </li>
 <li>
-<p><a id="mealname_syntax"></a> Dish names must be alphanumeric (<code>[A-Z], [a-z],[0-9]</code>), and at most 30 characters long.</p>
+<p><a id="mealname-syntax"></a> Dish names must be alphanumeric (<code>[A-Z], [a-z],[0-9]</code>), and at most 30 characters long.</p>
 </li>
 </ul>
 </div>
@@ -336,11 +372,69 @@ If in suggestion mode, the suggest meals will also be refreshed depending on the
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide for the budget bar feature.</em></p></td>
 </tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="Design-Model"><a class="link" href="#Design-Model">Model component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram">
+</div>
+<div class="title">Figure 1. Structure of the Model Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/calofit/model/Model.java"><strong><em>Model.java</em></strong></a></p>
+</div>
+<div class="paragraph">
+<p>The <strong><em>Model</em></strong>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <strong><em>UserPref</em></strong> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the <strong><em>DishDatabase</em></strong> data, <strong><em>MealLog</em></strong> data and <strong><em>CalorieBudget</em></strong> data.</p>
+</li>
+<li>
+<p>exposes many unmodifiable properties that can be 'observed' by the <strong><em>UI</em></strong> component</p>
+<div class="ulist">
+<ul>
+<li>
+<p>List of today meals (<strong><em>ObservableList&lt;Meal&gt;</em></strong>)</p>
+</li>
+<li>
+<p>List of suggested/filtered dishes (<strong><em>ObservableList&lt;Dish&gt;</em></strong>)</p>
+</li>
+<li>
+<p>Current calorie budget (<strong><em>CalorieBudget</em></strong>)
+The <strong><em>UI</em></strong> components can be bound to this list, so that the <strong><em>UI</em></strong> automatically updates when the data in the list changes.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This design allows many parts of CaloFit to be created without the fear of conflict with other classes. This is due to the <strong><em>Model</em></strong> interface acting as a Facade class that manages the interactions between the components that makeup CaloFit.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide for the budget bar feature.</em></p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
 </tr>
 </tbody>
 </table>
+</div>
 <div class="sect2">
 <h3 id="budget-bar-display"><a class="link" href="#budget-bar-display">Budget Bar display</a></h3>
 <div class="paragraph">
@@ -499,4 +593,4 @@ Simpler implementation and better performance outweighs the cost of using an ext
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:08:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:33:58 UTC</div></div></div></body></html>
